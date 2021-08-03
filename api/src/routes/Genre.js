@@ -23,6 +23,7 @@ router.get("/genre", async function (req, res) {
                 name:e.name
             }
         }))
+        res.status(202).send(genre)
     }
 })
 
