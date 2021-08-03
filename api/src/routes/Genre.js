@@ -16,7 +16,6 @@ const apiGenre = async function () {
 
 router.get("/genre", async function (req, res) {
     const genre = await apiGenre()
-
     if(genre){
         genre.map(e => Genre.findOrCreate({
             where:{
