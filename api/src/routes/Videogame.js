@@ -141,6 +141,7 @@ router.post("/games", async function (req, res) {
         })
 
         newGame.addGenre(genreDb)
+        res.send("Personaje Creado")
         
     } else {
         res.status(404).send("Completar formulario correctamente")
