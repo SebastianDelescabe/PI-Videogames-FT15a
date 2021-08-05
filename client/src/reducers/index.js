@@ -1,5 +1,7 @@
 const initialState = {
-    stateVideogames:[]
+    videogamesState:[],
+    backUpVideogames:[],
+
 }
 
 function rootReducer(state = initialState, action) {
@@ -7,7 +9,13 @@ function rootReducer(state = initialState, action) {
         case "GET_VIDEOGAMES":
             return{
                 ...state,
-                stateVideogames:action.payload
+                videogamesState:action.payload,
+                backUpVideogames:action.payload
+            }
+        case "GET_NAME_VIDEOGAME":
+            return{
+                ...state,
+                videogamesState:action.payload
             }
             
         default:
