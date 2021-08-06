@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+/* body{
+  background-image: url("https://media.istockphoto.com/vectors/digital-technology-gaming-abstract-background-vector-id1164222265?k=6&m=1164222265&s=612x612&w=0&h=gCQbzULLSkDkthcgBfTi_SJRNUGcjsic8OKZgl0uFAk=");
+} */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
