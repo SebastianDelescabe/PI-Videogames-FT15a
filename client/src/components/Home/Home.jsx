@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import GenreFilter from "../Filters/GenreFilter";
-import IdFilter from "../Filters/IdFilter";
+import RatingFilter from "../Filters/RatingFilter";
 import styleHome from './Home.module.css'
 
 
@@ -30,16 +30,16 @@ export default function Home() {
   //--------Fin Paginado-------
 
   //--------Check box ---------
-  const [checkBd, setCheckBd] = useState(false)
+  const [checkBd, setCheckBd] = useState(true)
 
   function handleCheck(e) {
-    console.log(checkBd)
+    console.log(e.target.value)
     if (checkBd === false) {
-      dispatch(filterBd(e.target.value))
-      setCheckBd(true)
+      dispatch(filterBd(e.target.value)) 
+      setCheckBd(true)  
     } else {
-      setCheckBd(false)
-      dispatch(getVideogames())
+      dispatch(filterBd(e.target.value))
+      setCheckBd(false) 
     }
   }
 
@@ -56,11 +56,11 @@ export default function Home() {
       <div>
         <SearchBar />
         <GenreFilter />
-        <IdFilter/>
+        <RatingFilter setCurrentPage = {setCurrentPage} />
       </div>
       {/**------------Renderizo Checkbox filtro BD------------ */}
       <div>
-        <input onChange={(e) => handleCheck(e)} type="checkbox" value="true" defaultChecked={checkBd} />
+        <input onChange={(e) => handleCheck(e)} type="checkbox" value={checkBd} />
         <label >Juegos creados</label>
       </div>
       {/*--------Renderizo cada carta en el home------------*/}

@@ -30,16 +30,34 @@ function rootReducer(state = initialState, action) {
                 videogamesState: genreFilterApi
             }
         case "FILTER_BD":
-            const bdFilter = action.payload === undefined ? state.backUpVideogames : state.backUpVideogames.filter(e => e.createdDb)
+            const bdFilter = action.payload === "true" ? state.backUpVideogames.filter(e => e.createdDb) : state.backUpVideogames
             return {
                 ...state,
                 videogamesState: bdFilter
             }
-        case "FILTER_ID":
-            // const idFilter = action.payload === "best" ? state.backUpVideogames.filter(e => e.rating).sort() : state.backUpVideogames
-            return{
+        case "FILTER_RATING":
+            const ratingFilter = action.payload === 'best' ?
+                state.backUpVideogames.sort(function (a, b) {
+                    if (a.rating > b.rating) {
+                        return -1;
+                    }
+                    if (b.rating > a.rating) {
+                        return 1;
+                    }
+                    return 0;
+                }) :
+                state.backUpVideogames.sort(function (a, b) {
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+                    if (b.name > a.name) {
+                        return -1;
+                    }
+                    return 0;
+                })
+            return {
                 ...state,
-                videogamesState:idFilter
+                videogamesState: ratingFilter
             }
         default:
             return state

@@ -52,9 +52,9 @@ export function filterBd(payload) {
     }
 }
 
-export function filterId(payload) {
+export function filterRating(payload) {
     return {
-        type: "FILTER_ID",
+        type: "FILTER_RATING",
         payload
     }
 }
