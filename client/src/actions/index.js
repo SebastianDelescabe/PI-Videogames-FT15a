@@ -23,3 +23,24 @@ export function getNameVideogame(payload) {
         }
     }
 }
+
+export function getGenres(){
+    return async function (dispatch){
+        try{
+            const genres = await axios.get("http://localhost:3001/genre")
+            return dispatch({
+                type:"GET_GENRES",
+                payload:genres.data
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
+export function filterGenre(payload){
+    return{
+        type:"FILTER_GENRE",
+        payload,
+    }
+}

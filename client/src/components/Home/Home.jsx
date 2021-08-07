@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
+import GenreFilter from "../Filters/GenreFilter";
 import styleHome from './Home.module.css'
 
 export default function Home() {
@@ -16,7 +17,6 @@ export default function Home() {
   //---Paginado 
   const [currentPage, setCurrentPage] = useState(1)
   const [charactersPerPage, setCharactersPerPage] = useState(9)
-
   const indexLastCharacter = currentPage * charactersPerPage //9 1*9 = 9
   const indexFirstCharacter = indexLastCharacter - charactersPerPage// = 0 9-9 = 0
 
@@ -26,6 +26,7 @@ export default function Home() {
     setCurrentPage(pageNumber)
   }
   //--Fin paginado
+
 
   useEffect(() => {
     dispatch(getVideogames())
@@ -37,10 +38,9 @@ export default function Home() {
       <Link to="/formulario">
         <button>Crea tu Videojuego</button>
       </Link>
-
       <SearchBar />
-
-      <div className= {styleHome.divCard} >
+      <GenreFilter/>
+      <div className={styleHome.divCard} >
         {
           currentCharacter && currentCharacter.map(e => (
             e.createdDb === true ? <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} />
@@ -48,9 +48,8 @@ export default function Home() {
               <VideogameCard name={e.name} genres={e.genres} img={e.background_image} />
           ))
         }
-      </div>
-
-      <Pagination
+      </div> 
+       <Pagination
         charactersPerPage={charactersPerPage}
         videogames={videogames.length}
         pagination={pagination}
