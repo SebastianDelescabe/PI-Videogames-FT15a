@@ -15,7 +15,9 @@ const apiInfo = async function () {
                 id: e.id,
                 name: e.name,
                 background_image: e.background_image,
-                genres: e.genres.map(e => e.name)
+                genres: e.genres.map(e => e.name),
+                rating:e.rating
+ 
             }
         }))
     }
@@ -53,9 +55,7 @@ router.get("/games", async function (req, res) {
         const allVideoGames = await allData()
 
         if (name !== undefined) {
-            const searchName = allVideoGames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0, 15)
-            console.log(searchName)
-            console.log(searchName.length)
+            const searchName = allVideoGames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0,15)
             if (searchName.length > 0) {
                 res.status(200).send(searchName)
             } else {
@@ -74,6 +74,7 @@ router.get("/games", async function (req, res) {
 router.get("/games/:id", async function (req, res) {
     const { id } = req.params
     const arrDbInfo = []
+    const arrApiInfo = []
 
     try{
         if (!id) {
@@ -82,7 +83,8 @@ router.get("/games/:id", async function (req, res) {
     
         if (!id.includes("-")) {
             const info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${process.env.API_KEY}`)
-            const apiData = info.data.map(e => {
+            arrApiInfo.push(info.data)
+            const apiData = arrApiInfo.map(e => {
                 return {
                     id: e.id,
                     name: e.name,
