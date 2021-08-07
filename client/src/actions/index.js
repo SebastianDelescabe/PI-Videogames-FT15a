@@ -24,23 +24,37 @@ export function getNameVideogame(payload) {
     }
 }
 
-export function getGenres(){
-    return async function (dispatch){
-        try{
+export function getGenres() {
+    return async function (dispatch) {
+        try {
             const genres = await axios.get("http://localhost:3001/genre")
             return dispatch({
-                type:"GET_GENRES",
-                payload:genres.data
+                type: "GET_GENRES",
+                payload: genres.data
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
 }
 
-export function filterGenre(payload){
-    return{
-        type:"FILTER_GENRE",
+export function filterGenre(payload) {
+    return {
+        type: "FILTER_GENRE",
         payload,
+    }
+}
+
+export function filterBd(payload) {
+    return {
+        type: "FILTER_BD",
+        payload
+    }
+}
+
+export function filterId(payload) {
+    return {
+        type: "FILTER_ID",
+        payload
     }
 }
