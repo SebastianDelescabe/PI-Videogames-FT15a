@@ -43,13 +43,13 @@ export default function Home() {
   }, [dispatch])
 
   return (
-    <div>
-      <h1>Videogames APP</h1>
+    <div className = {styleHome.body}>
+      <h1 className={styleHome.h1}>Videogames APP</h1>
       <Link to="/formulario">
         <button>Crea tu Videojuego</button>
       </Link>
-      <div>
-        <SearchBar />
+      <SearchBar />
+      <div className={styleHome.filters}>
         <GenreFilter />
         <DbFilter />
         <div>

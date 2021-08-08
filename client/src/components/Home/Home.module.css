@@ -1,5 +1,24 @@
 .divCard{
     display:flex;
     flex-wrap:wrap;
-    margin-left: 50px;
+    padding: 20px;
+    margin: 15px;
+    border: solid rgb(46, 41, 80);
+}
+
+.h1{
+    color: deeppink;
+    padding: 10px;
+    border: solid 2px deeppink;
+    margin-left: 500px;
+    margin-right: 500px;
+    background-color: white;
+    /* opacity: 0.8; */
+}
+
+.filters{
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    padding: 10px;
 }
