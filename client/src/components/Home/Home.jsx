@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideogames, filterBd } from '../../actions'
+import { getVideogames, filterRating } from '../../actions'
 import { Link } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import GenreFilter from "../Filters/GenreFilter";
-import RatingFilter from "../Filters/RatingFilter";
+import DbFilter from "../Filters/DbFilter";
 import styleHome from './Home.module.css'
 
 
@@ -18,7 +18,7 @@ export default function Home() {
 
   //-------Paginado---------
   const [currentPage, setCurrentPage] = useState(1)
-  const [videogamesPerPage, setVideogamesPerPage] = useState(9)
+  const [videogamesPerPage, setVideogmesPerPage] = useState(9)
   const indexLastVideogames = currentPage * videogamesPerPage //9 1*9 = 9
   const indexFirstVideogames = indexLastVideogames - videogamesPerPage// = 0 9-9 = 0
 
@@ -27,20 +27,15 @@ export default function Home() {
   function pagination(pageNumber) {
     setCurrentPage(pageNumber)
   }
-  //--------Fin Paginado-------
 
-  //--------Check box ---------
-  const [checkBd, setCheckBd] = useState(true)
+  //--------Ordenar por rating----------
+  const [orden, setOrden] = useState("")
 
-  function handleCheck(e) {
-    console.log(e.target.value)
-    if (checkBd === false) {
-      dispatch(filterBd(e.target.value)) 
-      setCheckBd(true)  
-    } else {
-      dispatch(filterBd(e.target.value))
-      setCheckBd(false) 
-    }
+  function handleFilterRating(e) {
+    e.preventDefault()
+    dispatch(filterRating(e.target.value))
+    setCurrentPage(1);
+    setOrden(e.target.value)
   }
 
   useEffect(() => {
@@ -56,23 +51,20 @@ export default function Home() {
       <div>
         <SearchBar />
         <GenreFilter />
-        <RatingFilter setCurrentPage = {setCurrentPage} />
+        <DbFilter />
+        <div>
+          <select onChange={(e) => handleFilterRating(e)} >
+            <option value="best">Mejor rating</option>
+            <option value="worst">Peor rating</option>
+          </select>
+        </div>
       </div>
-      {/**------------Renderizo Checkbox filtro BD------------ */}
-      <div>
-        <input onChange={(e) => handleCheck(e)} type="checkbox" value={checkBd} />
-        <label >Juegos creados</label>
-      </div>
-      {/*--------Renderizo cada carta en el home------------*/}
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
-            e.createdDb === true ? <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} />
-              :
-              <VideogameCard name={e.name} genres={e.genres} img={e.background_image} />
+            <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
           ))
         }
-        {/**-------Renderizo Paginado---------------- */}
       </div>
       <Pagination
         videogamesPerPage={videogamesPerPage}

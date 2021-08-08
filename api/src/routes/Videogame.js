@@ -5,7 +5,7 @@ const { Videogame, Genre } = require('../db');
 const router = Router();
 
 
-const apiInfo = async function () {
+const apiInfo = async function () { //TRAE INFO DE API
     let allGames = []
 
     for (let i = 1; i <= 5; i++) {
@@ -15,7 +15,11 @@ const apiInfo = async function () {
                 id: e.id,
                 name: e.name,
                 background_image: e.background_image,
-                genres: e.genres.map(e => e.name),
+                genres: e.genres.map(e => {
+                    return{
+                        name : e.name
+                    }
+                }),
                 rating:e.rating
  
             }
@@ -26,7 +30,7 @@ const apiInfo = async function () {
 }
 
 
-const bdInfo = async function () {
+const bdInfo = async function () {  //TRAE INFO DE BD
     const dataBd = await Videogame.findAll({
         include: {
             model: Genre,
@@ -39,7 +43,7 @@ const bdInfo = async function () {
     return dataBd
 }
 
-const allData = async function () {
+const allData = async function () {  //JUNTA LAS DOS INFO
     const apiData = await apiInfo()
     const bdData = await bdInfo()
     const allData = apiData.concat(bdData)
@@ -48,21 +52,21 @@ const allData = async function () {
 
 
 
-router.get("/games", async function (req, res) {
+router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE PASAN QUERY , SI LE PASAN QUERY LO BUSCA EN TODA LA INFO
     const { name } = req.query
 
     try {
-        const allVideoGames = await allData()
+        const allVideogames = await allData()
 
-        if (name !== undefined) {
-            const searchName = allVideoGames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0,15)
+        if (name !== undefined && name !== "") {
+            const searchName = allVideogames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0,15)
             if (searchName.length > 0) {
                 res.status(200).send(searchName)
             } else {
                 res.status(404).send("No se encontro video juego")
             }
         } else {
-            res.status(200).send(allVideoGames)
+            res.status(200).send(allVideogames)
         }
     } catch (error) {
         console.log(error.message)
@@ -71,7 +75,7 @@ router.get("/games", async function (req, res) {
 
 
 
-router.get("/games/:id", async function (req, res) {
+router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const { id } = req.params
     const arrDbInfo = []
     const arrApiInfo = []
@@ -121,7 +125,7 @@ router.get("/games/:id", async function (req, res) {
 })
 
 
-router.post("/games", async function (req, res) {
+router.post("/games", async function (req, res) {   //POST GAMES
     const { name, description, released, rating, platforms, background_image, createdDb, genre } = req.body
 
     if (name && description && platforms && genre) {
@@ -138,7 +142,7 @@ router.post("/games", async function (req, res) {
         })
         let genreDb = await Genre.findAll({
             where: {
-                name: genre
+                name:genre
             }
         })
 
