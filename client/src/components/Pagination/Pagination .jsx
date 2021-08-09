@@ -9,15 +9,13 @@ export default function Pagination({ videogamesPerPage, videogames, pagination }
 
     return (
         <div>
-            <ul className = {style.paginado}>
-                {
-                    pageNumbers && pageNumbers.map(e => (
-                        <li className={style.number}  key={e}>
-                            <div onClick={() => pagination(e)}>{e}</div>
-                        </li>
-                    ))
-                }
-            </ul>
+            <div className={style.paginado}>
+            {
+                pageNumbers && pageNumbers.map(e => (
+                    <div className={style.number} onClick={() => pagination(e)}>{e}</div>
+                ))
+            }
+            </div>
         </div>
     )
 }

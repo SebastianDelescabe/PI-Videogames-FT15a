@@ -1,10 +1,9 @@
 .divCard{
     display:flex;
     flex-wrap:wrap;
-    padding: 20px;
-    margin: 15px;
-    border: solid rgb(46, 41, 80);
+    margin-left:40px;
 }
+
 
 .h1{
     color: deeppink;
@@ -13,7 +12,6 @@
     margin-left: 500px;
     margin-right: 500px;
     background-color: white;
-    /* opacity: 0.8; */
 }
 
 .filters{
