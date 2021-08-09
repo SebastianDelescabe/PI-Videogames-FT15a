@@ -19,14 +19,14 @@ module.exports = (sequelize) => {
       allowNull:false
     },
     released: {
-      type:DataTypes.STRING,
+      type:DataTypes.DATEONLY,
 
     },
     rating:{
       type:DataTypes.DECIMAL,
     },
     platforms:{
-      type:DataTypes.ARRAY(DataTypes.STRING),
+      type:DataTypes.STRING,
       allowNull:false
     },
     background_image:{

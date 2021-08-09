@@ -2,10 +2,10 @@ import axios from 'axios'
 
 export function getVideogames() {
     return async function (dispatch) {
-        const info = await axios.get('http://localhost:3001/games')
+        const videogames = await axios.get('http://localhost:3001/games')
         return dispatch({
             type: "GET_VIDEOGAMES",
-            payload: info.data
+            payload: videogames.data
         })
     }
 }
@@ -17,6 +17,20 @@ export function getNameVideogame(payload) {
             return dispatch({
                 type: "GET_NAME_VIDEOGAME",
                 payload: videogame.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function getDetail() {
+    return async function (dispatch) {
+        try {
+            const details = await axios.get("http://localhost:3001/")
+            return dispatch({
+                type: "GET_DETAIL",
+                payload: details.data
             })
         } catch (error) {
             console.log(error)
@@ -56,5 +70,12 @@ export function filterRating(payload) {
     return {
         type: "FILTER_RATING",
         payload
+    }
+}
+
+export function postVideogame(payload) { //TRAIGO LA INFO NECESARIA PARA EL FORMULARIO DESDE EL POST DEL BACK
+    return async function (dispatch) {
+        const response = await axios.post("http://localhost:3001/games", payload)
+        return response;
     }
 }

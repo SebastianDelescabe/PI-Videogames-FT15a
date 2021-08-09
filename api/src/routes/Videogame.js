@@ -51,7 +51,6 @@ const allData = async function () {  //JUNTA LAS DOS INFO
 }
 
 
-
 router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE PASAN QUERY , SI LE PASAN QUERY LO BUSCA EN TODA LA INFO
     const { name } = req.query
 
@@ -74,17 +73,12 @@ router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI N
 })
 
 
-
 router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const { id } = req.params
     const arrDbInfo = []
     const arrApiInfo = []
 
     try{
-        if (!id) {
-            return res.status(404).send("Ingresar ID valido")
-        }
-    
         if (!id.includes("-")) {
             const info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${process.env.API_KEY}`)
             arrApiInfo.push(info.data)
@@ -126,9 +120,9 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
 
 
 router.post("/games", async function (req, res) {   //POST GAMES
-    const { name, description, released, rating, platforms, background_image, createdDb, genre } = req.body
+    const { name, description, released, rating, platforms, background_image, createdDb, genres } = req.body
 
-    if (name && description && platforms && genre) {
+    if (name && description && platforms && genres) {
         let newGame = await Videogame.create({
             name,
             description,
@@ -136,13 +130,10 @@ router.post("/games", async function (req, res) {   //POST GAMES
             released,
             rating,
             background_image,
-            createdDb,
-
-
         })
         let genreDb = await Genre.findAll({
             where: {
-                name:genre
+                name:genres
             }
         })
 
@@ -154,9 +145,5 @@ router.post("/games", async function (req, res) {   //POST GAMES
     }
 
 })
-
-
-
-
 
 module.exports = router

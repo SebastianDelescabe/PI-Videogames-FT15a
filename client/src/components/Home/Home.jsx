@@ -37,7 +37,7 @@ export default function Home() {
     setCurrentPage(1);
     setOrden(e.target.value)
   }
-
+  
   useEffect(() => {
     dispatch(getVideogames())
   }, [dispatch])
@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div className = {styleHome.body}>
       <h1 className={styleHome.h1}>Videogames APP</h1>
-      <Link to="/formulario">
+      <Link to="/form">
         <button>Crea tu Videojuego</button>
       </Link>
       <SearchBar />
@@ -62,7 +62,9 @@ export default function Home() {
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
+            <Link to={"/detail/" + e.id}  >
             <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
+            </Link>
           ))
         }
       </div>

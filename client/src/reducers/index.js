@@ -2,7 +2,7 @@ const initialState = {
     videogamesState: [],
     backUpVideogames: [],
     genres: [],
-
+    detail:[],
 }
 
 function rootReducer(state = initialState, action) {
@@ -25,8 +25,14 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 genres: action.payload
             }
+        
+        case "GET_DETAIL":
+            return{
+                ...state,
+                detail:action.payload
+            }
 
-        case "FILTER_GENRE": //payload === action // state.backUpVideogames.filter(e => e.genres.includes(action.payload))
+        case "FILTER_GENRE":
             const genreFilter = action.payload === "all" ? state.backUpVideogames :
                 state.backUpVideogames.filter(e => {
                     for (let i = 0; i < e.genres.length; i++) {
@@ -39,6 +45,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 videogamesState: genreFilter
+
             }
 
         case "FILTER_BD":
@@ -72,6 +79,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 videogamesState: ratingFilter
             }
+            case "POST_VIDEOGAMES":  //NO HACE NADA PERO TIENE QUE ESTAR EN EL REDUCER
+            return{
+                ...state,
+            }
+
         default:
             return state
     }
