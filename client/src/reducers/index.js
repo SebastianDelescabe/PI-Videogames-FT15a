@@ -57,7 +57,7 @@ function rootReducer(state = initialState, action) {
 
         case "FILTER_RATING":
             const ratingFilter = action.payload === 'best' ?
-                state.backUpVideogames.sort(function (a, b) {
+                state.videogamesState.sort(function (a, b) {
                     if (a.rating > b.rating) {
                         return -1;
                     }
@@ -66,7 +66,7 @@ function rootReducer(state = initialState, action) {
                     }
                     return 0;
                 }) :
-                state.backUpVideogames.sort(function (a, b) {
+                state.videogamesState.sort(function (a, b) {
                     if (a.rating > b.rating) {
                         return 1;
                     }

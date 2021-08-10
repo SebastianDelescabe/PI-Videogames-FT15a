@@ -37,9 +37,16 @@ export default function Home() {
     setCurrentPage(1);
     setOrden(e.target.value)
   }
+
+  const [detail,setDetail] = useState("true")
+  function handleOnClick(e){
+    setDetail("false")
+  }
   
   useEffect(() => {
-    dispatch(getVideogames())
+    if(detail === "true"){
+      dispatch(getVideogames())
+    }
   }, [dispatch])
 
   return (
@@ -62,7 +69,7 @@ export default function Home() {
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
-            <Link to={"/detail/" + e.id}  >
+            <Link to={"/detail/" + e.id} onClick= { e => handleOnClick(e)}  >
             <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
             </Link>
           ))
