@@ -56,29 +56,16 @@ function rootReducer(state = initialState, action) {
             }
 
         case "FILTER_RATING":
-            const ratingFilter = action.payload === 'best' ?
-                state.videogamesState.sort(function (a, b) {
-                    if (a.rating > b.rating) {
-                        return -1;
-                    }
-                    if (b.rating > a.rating) {
-                        return 1;
-                    }
-                    return 0;
-                }) :
-                state.videogamesState.sort(function (a, b) {
-                    if (a.rating > b.rating) {
-                        return 1;
-                    }
-                    if (b.rating > a.rating) {
-                        return -1;
-                    }
-                    return 0;
-                })
+            const ratingFilter = 
+            action.payload === 'best' ?
+            state.videogamesState.sort((b,a) => a.rating - b.rating)
+            : 
+            state.videogamesState.sort((b,a) => b.rating - a.rating) 
             return {
                 ...state,
                 videogamesState: ratingFilter
             }
+            
             case "POST_VIDEOGAMES":  //NO HACE NADA PERO TIENE QUE ESTAR EN EL REDUCER
             return{
                 ...state,

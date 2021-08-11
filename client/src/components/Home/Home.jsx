@@ -7,6 +7,7 @@ import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import GenreFilter from "../Filters/GenreFilter";
 import DbFilter from "../Filters/DbFilter";
+import RatingOrder from "../Filters/RatingOrder";
 import styleHome from './Home.module.css'
 
 
@@ -34,19 +35,11 @@ export default function Home() {
   function handleFilterRating(e) {
     e.preventDefault()
     dispatch(filterRating(e.target.value))
-    setCurrentPage(1);
     setOrden(e.target.value)
-  }
-
-  const [detail,setDetail] = useState("true")
-  function handleOnClick(e){
-    setDetail("false")
   }
   
   useEffect(() => {
-    if(detail === "true"){
       dispatch(getVideogames())
-    }
   }, [dispatch])
 
   return (
@@ -61,6 +54,7 @@ export default function Home() {
         <DbFilter />
         <div>
           <select onChange={(e) => handleFilterRating(e)} >
+            <option value = "default">Default</option>
             <option value="best">Mejor rating</option>
             <option value="worst">Peor rating</option>
           </select>
@@ -69,7 +63,7 @@ export default function Home() {
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
-            <Link to={"/detail/" + e.id} onClick= { e => handleOnClick(e)}  >
+            <Link to={"/detail/" + e.id} >
             <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
             </Link>
           ))

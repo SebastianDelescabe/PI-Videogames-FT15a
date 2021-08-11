@@ -13,8 +13,8 @@ export default function GenreFilter() {
         dispatch(getGenres())
     }, [dispatch])
 
-    function handleGenreFilter(e) { //Uso la accion que definimos en el action (filteredByStatus)
-        dispatch(filterGenre(e.target.value))//e.target.value es el value del select, me pasa a la funcion el payload de acuerdo a lo que elija el usuario
+    function handleGenreFilter(e) { 
+        dispatch(filterGenre(e.target.value))
         console.log(e.target.value)
     }
 
