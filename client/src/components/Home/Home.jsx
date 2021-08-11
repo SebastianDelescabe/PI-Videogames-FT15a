@@ -7,7 +7,6 @@ import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import GenreFilter from "../Filters/GenreFilter";
 import DbFilter from "../Filters/DbFilter";
-import RatingOrder from "../Filters/RatingOrder";
 import styleHome from './Home.module.css'
 
 
@@ -54,7 +53,6 @@ export default function Home() {
         <DbFilter />
         <div>
           <select onChange={(e) => handleFilterRating(e)} >
-            <option value = "default">Default</option>
             <option value="best">Mejor rating</option>
             <option value="worst">Peor rating</option>
           </select>

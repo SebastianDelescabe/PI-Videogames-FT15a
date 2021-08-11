@@ -1,80 +1,91 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { getGenres, postVideogame} from '../../actions'
+import { getGenres, postVideogame } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux';
+
+
+function validate(input) {
+    let errors = {}
+    if (!input.name) {
+        errors.name = "Se requiere Nombre"
+    } else if (!input.description) {
+        errors.description = "Debe completar la descripcion"
+    } else if (!input.rating || input.rating > 5 || input.rating < 0) {
+        errors.rating = "Rating de 0 al 5"
+    }
+    return errors
+}
+
 
 export default function CharacterForm() {
     const dispatch = useDispatch()
     const history = useHistory()
     const genres = useSelector((state) => state.genres)
-    
-    
-    //---ESTADO PARA GUARDAR DATOS DEL FORMULARIO---
-    const [input, setInput] = useState({  //LE PASO COMO OBJETO LO QUE NECESITA EL POST!!
+
+
+    const [input, setInput] = useState({
         name: "",
         description: "",
         platforms: "",
         released: "",
-        rating:"",
-        background_image:"",
-        genres: []  //arreglo para poder meter muchas
+        rating: "",
+        background_image: "",
+        genres: []
     })
-    
-    
-    console.log(input)
-    //-------FUNCION PARA CONTROLAR INPUTS, !!! LA CLAVE ES PONER MUCHOS NAME PARA DESPUES MODIFICAR ESE NADA MAS!------
-    function handleChange(e){
+
+
+    const [errors, setErrors] = useState({})
+  
+    function handleChange(e) {
         setInput({
             ...input,
-            [e.target.name] : e.target.value //EL NAME LO TIENENN TODAS LAS OPCIONES PARA QUE VARIE SEGUN CADA OPCION DE NAME EL E.TARGET.VALUE
+            [e.target.name]: e.target.value
         })
-        console.log(input)
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
     }
-    
-    //-------FUNCION PARA CONTROLAR CHECKBOX-------
-    function handleCheck(e){
-        if(e.target.checked){
+
+
+    function handleSelect(e) {
+        setInput({
+            ...input,
+            genres: [...input.genres, e.target.value]
+        })
+    }
+
+
+    function handleSubmit(e) {
+        if(input.name === ""){
+            e.preventDefault()
+            alert("Completar correctamente el formulario")
+        }else{
+            e.preventDefault();
+            dispatch(postVideogame(input))
+            alert("Videojuego Creado!!")
             setInput({
-                ...input,
-                status: e.target.value //es la misma logica que arriba solo que modifico el status
+                name: "",
+                description: "",
+                platforms: "",
+                released: "",
+                rating: "",
+                background_image: "",
+                genres: []
             })
+            history.push('/home')
         }
     }
-    
-    //-------FUNCION PARA CONTROLAR SELECT-------
-    function handleSelect(e){
-        setInput({
-            ...input,
-            genres:[...input.genres,e.target.value] //para guardar las ocupaciones, con el "...input.ocupation" traeme lo que habia y concatenale la nueva ocupacion con el e.target.value
-        })
-    }
-    
-    //-------FUNCION PARA CONTROLAR EL BOTON-------
-    function handleSubmit(e){
-        e.preventDefault();
-        dispatch(postVideogame(input))   //EJECUTO LA FUNCION DE LA ACCION QUE CREA EL FORMULARIO!!!!
-        alert("Videojuego Creado!!")
-        setInput({   //VUELVO A PONER EL STATUS VACIOOO
-            name: "",
-            description: "",
-            platforms: "",
-            released: "",
-            rating:"",
-            background_image:"",
-            genres: []
-        })
-        history.push('/home')  //UNA VEZ CARGADO EL PERSONAJE ME REDIRIJE AL HOME
-    }
-    
+
     useEffect(() => {
         dispatch(getGenres());
-    }, []);
-    
+    }, [dispatch]);
+
     return (
         <div>
-            <Link to= "/home"><button>Volver</button></Link> {/*Link para volver a la home*/}
-            <h1>Crear Personaje!</h1>
-            <form onSubmit={(e)=>handleSubmit(e)}>
+            <Link to="/home"><button>Volver</button></Link>
+            <h1>Crear Videojuego!</h1>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Nombre:</label>
                     <input
@@ -82,18 +93,27 @@ export default function CharacterForm() {
                         value={input.name}
                         name="name"
                         onChange={(e) => handleChange(e)}
-                        required
-                        />
+                    />
+                    {
+                        errors.name && (
+                            <p> {errors.name} </p>
+                        )
+                    }
                 </div>
                 <div>
                     <label>descripcion:</label>
-                    <input
+                    <textarea
                         type="text"
                         value={input.description}
                         name="description"
                         onChange={(e) => handleChange(e)}
-                        required
                     />
+                    {
+                        errors.description && (
+                            <p> {errors.description} </p>
+
+                        )
+                    }
                 </div>
                 <div>
                     <label>Plataformas:</label>
@@ -102,7 +122,6 @@ export default function CharacterForm() {
                         value={input.platforms}
                         name="platforms"
                         onChange={(e) => handleChange(e)}
-                        required
                     />
                 </div>
                 <div>
@@ -112,38 +131,44 @@ export default function CharacterForm() {
                         value={input.released}
                         name="released"
                         onChange={(e) => handleChange(e)}
-                        required
                     />
                 </div>
-                <div>   {/**COMO HACER CHECKBOX */}
+                <div>
                     <label>rating:</label>
                     <input
                         type="number"
                         name="rating"
                         value={input.rating}
-                        onChange= {(e) => handleChange(e)}
-                        required
+                        onChange={(e) => handleChange(e)}
                     />
+                    {
+                        errors.rating && (
+                            <p> {errors.rating} </p>
+                        )
+                    }
                 </div>
-                <div>   {/**COMO HACER CHECKBOX */}
+                <div>
                     <label>imagen:</label>
                     <input
                         type="url"
                         name="background_image"
                         value={input.background_image}
-                        onChange= {(e) => handleChange(e)}
-                        required
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div>
-                    <select onChange = {(e) =>handleSelect(e)}>
-                        {genres.map((e)=> (  //ES IMPORTANTE QUE EL MAP TENGA AQUI PARENTESIS EN VEZ DE LLAVES
-                            <option value = {e.name}> {e.name} </option> //LA VARIABLE OCUPATIONS TIENE TODA LA INFO QUE TRAIGO DEL BACKEND, ACCEDO A ELLA COMO OBJETITO QUE ES
+                    <select onChange={(e) => handleSelect(e)}>
+                        {genres.map((e) => (
+                            <option value={e.name}> {e.name} </option>
                         ))}
                     </select>
-                    <ul><li> {input.genres.map(e => e + ",")}  </li></ul>  {/**Sirve para renderizar todo lo que vas seleccionando en el SELECT */}
-                    <button  onSubmit = { (e) => handleSubmit(e)} type= "submit">Crear Personaje</button>
+                    <p>{input.genres.map(e => e + ",")}</p>
                 </div>
+                {
+                    errors && errors.name || errors.rating || errors.description ? <p>Completar Formulario</p>
+                    :
+                    <button onSubmit={(e) => handleSubmit(e)} type="submit">Crear Personaje</button>
+                }
             </form>
         </div>
     )

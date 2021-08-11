@@ -1,0 +1,4 @@
+.genresBox{
+    display: flex;
+    flex-direction: column;
+}
