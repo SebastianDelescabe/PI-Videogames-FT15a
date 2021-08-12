@@ -35,7 +35,7 @@ export default function CharacterForm() {
 
 
     const [errors, setErrors] = useState({})
-  
+
     function handleChange(e) {
         setInput({
             ...input,
@@ -57,10 +57,10 @@ export default function CharacterForm() {
 
 
     function handleSubmit(e) {
-        if(input.name === ""){
+        if (input.name === "") {
             e.preventDefault()
             alert("Completar correctamente el formulario")
-        }else{
+        } else {
             e.preventDefault();
             dispatch(postVideogame(input))
             alert("Videojuego Creado!!")
@@ -165,9 +165,9 @@ export default function CharacterForm() {
                     <p>{input.genres.map(e => e + ",")}</p>
                 </div>
                 {
-                    errors && errors.name || errors.rating || errors.description ? <p>Completar Formulario</p>
-                    :
-                    <button onSubmit={(e) => handleSubmit(e)} type="submit">Crear Personaje</button>
+                    errors && (errors.name || errors.rating || errors.description) ? <p>Completar Formulario</p>
+                        :
+                        <button onSubmit={(e) => handleSubmit(e)} type="submit">Crear Personaje</button>
                 }
             </form>
         </div>

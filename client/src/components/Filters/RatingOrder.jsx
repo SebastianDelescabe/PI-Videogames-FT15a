@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { filterRating } from '../../actions'
+import { filterRating, filterNameOrder } from '../../actions'
 
 export default function RatingFilter() {
 
     const dispatch = useDispatch()
 
+    //--------Ordenar por rating y alfabeticamente----------
     const [orden, setOrden] = useState("")
 
     function handleFilterRating(e) {
-      e.preventDefault()
-      dispatch(filterRating(e.target.value))
-      setOrden(e.target.value)
+        e.preventDefault()
+        if (e.target.value === "best" || e.target.value === "worst") {
+            dispatch(filterRating(e.target.value))
+            setOrden(e.target.value)
+        } else {
+            dispatch(filterNameOrder(e.target.value))
+            setOrden(e.target.value)
+        }
     }
 
     return (
@@ -19,7 +25,10 @@ export default function RatingFilter() {
             <select onChange={(e) => handleFilterRating(e)} >
                 <option value="best">Mejor rating</option>
                 <option value="worst">Peor rating</option>
-                <option value = "default">Default</option>
+            </select>
+            <select onChange={(e) => handleFilterRating(e)} >
+                <option value="asc">A-Z</option>
+                <option value="desc">Z-A</option>
             </select>
         </div>
     )

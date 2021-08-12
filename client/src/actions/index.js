@@ -24,10 +24,10 @@ export function getNameVideogame(payload) {
     }
 }
 
-export function getDetail() {
+export function getDetail(id) {
     return async function (dispatch) {
         try {
-            const details = await axios.get("http://localhost:3001/")
+            const details = await axios.get("http://localhost:3001/games/" + id)
             return dispatch({
                 type: "GET_DETAIL",
                 payload: details.data
@@ -69,6 +69,13 @@ export function filterBd(payload) {
 export function filterRating(payload) {
     return {
         type: "FILTER_RATING",
+        payload
+    }
+}
+
+export function filterNameOrder(payload) {
+    return {
+        type: "FILTER_NAME_ORDER",
         payload
     }
 }

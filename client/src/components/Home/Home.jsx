@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideogames, filterRating } from '../../actions'
+import { getVideogames } from '../../actions'
 import { Link } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import GenreFilter from "../Filters/GenreFilter";
 import DbFilter from "../Filters/DbFilter";
+import RatingOrder from "../Filters/RatingOrder"
 import styleHome from './Home.module.css'
 
 
 export default function Home() {
 
-  //--------Traigo info desde el backend y lo que me permite usar las funciones de las actions---------
+
   const dispatch = useDispatch()
-  const videogames = useSelector((state) => state.videogamesState)
+  const videogames = useSelector((state) => state.videogames)
 
   //-------Paginado---------
   const [currentPage, setCurrentPage] = useState(1)
@@ -28,21 +29,28 @@ export default function Home() {
     setCurrentPage(pageNumber)
   }
 
-  //--------Ordenar por rating----------
-  const [orden, setOrden] = useState("")
 
-  function handleFilterRating(e) {
-    e.preventDefault()
-    dispatch(filterRating(e.target.value))
-    setOrden(e.target.value)
-  }
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-      dispatch(getVideogames())
+    dispatch(getVideogames())
+      .then(response => {
+        setLoading(false)
+      })
+      .catch(error => console.log(error))
   }, [dispatch])
 
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <h1>Loading</h1>
+      </div>
+    )
+  }
+
   return (
-    <div className = {styleHome.body}>
+    <div className={styleHome.body}>
       <h1 className={styleHome.h1}>Videogames APP</h1>
       <Link to="/form">
         <button>Crea tu Videojuego</button>
@@ -51,18 +59,13 @@ export default function Home() {
       <div className={styleHome.filters}>
         <GenreFilter />
         <DbFilter />
-        <div>
-          <select onChange={(e) => handleFilterRating(e)} >
-            <option value="best">Mejor rating</option>
-            <option value="worst">Peor rating</option>
-          </select>
-        </div>
+        <RatingOrder />
       </div>
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
-            <Link to={"/detail/" + e.id} >
-            <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
+            <Link to={"/" + e.id} >
+              <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
             </Link>
           ))
         }
