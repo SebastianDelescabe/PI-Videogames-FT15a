@@ -16,12 +16,12 @@ const apiInfo = async function () { //TRAE INFO DE API
                 name: e.name,
                 background_image: e.background_image,
                 genres: e.genres.map(e => {
-                    return{
-                        name : e.name
+                    return {
+                        name: e.name
                     }
                 }),
-                rating:e.rating
- 
+                rating: e.rating
+
             }
         }))
     }
@@ -57,8 +57,8 @@ router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI N
     try {
         const allVideogames = await allData()
 
-        if (name !== undefined && name !== "") {
-            const searchName = allVideogames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0,15)
+        if (name && name !== "") {
+            const searchName = allVideogames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0, 15)
             if (searchName.length > 0) {
                 res.status(200).send(searchName)
             } else {
@@ -78,7 +78,7 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const arrDbInfo = []
     const arrApiInfo = []
 
-    try{
+    try {
         if (!id.includes("-")) {
             const info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${process.env.API_KEY}`)
             arrApiInfo.push(info.data)
@@ -104,14 +104,14 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
             const videoGameBdId = await Videogame.findByPk(id)
             arrDbInfo.push(videoGameBdId)
             const filtro = arrDbInfo.filter(e => e.id == id)
-            
+
             if (filtro.length > 0) {
                 return res.status(200).send(filtro)
             } else {
                 return res.status(404).send("No se encontro Videojuego con ese ID")
             }
         }
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 
@@ -133,13 +133,13 @@ router.post("/games", async function (req, res) {   //POST GAMES
         })
         let genreDb = await Genre.findAll({
             where: {
-                name:genres
+                name: genres
             }
         })
 
         newGame.addGenre(genreDb)
         res.send("Personaje Creado")
-        
+
     } else {
         res.status(404).send("Completar formulario correctamente")
     }
