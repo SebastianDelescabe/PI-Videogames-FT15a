@@ -3,20 +3,3 @@
     flex-wrap:wrap;
     margin-left:40px;
 }
-
-
-.h1{
-    color: deeppink;
-    padding: 10px;
-    border: solid 2px deeppink;
-    margin-left: 500px;
-    margin-right: 500px;
-    background-color: white;
-}
-
-.filters{
-    display: flex;
-    align-items: center;
-    justify-content:space-evenly;
-    padding: 10px;
-}

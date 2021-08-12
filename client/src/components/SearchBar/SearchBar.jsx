@@ -35,11 +35,10 @@ export default function SearchBar() {
                 )
             }
             {
-                loading && loading ? <p>Buscando...</p> : (
-                    <input onChange={((e) => handleInputChange(e))} placeholder="Nombre..." type="text" />
-                )
+                loading && loading ? <p>Buscando...</p> : null
             }
             <button onClick={((e) => handleSubmit(e))} type="submit">Buscar</button>
+            <input onChange={((e) => handleInputChange(e))} placeholder="Nombre..." type="text" />
         </div>
     )
 }

@@ -6,17 +6,12 @@ export default function RatingFilter() {
 
     const dispatch = useDispatch()
 
-    //--------Ordenar por rating y alfabeticamente----------
-    const [orden, setOrden] = useState("")
-
     function handleFilterRating(e) {
         e.preventDefault()
         if (e.target.value === "best" || e.target.value === "worst") {
             dispatch(filterRating(e.target.value))
-            setOrden(e.target.value)
         } else {
             dispatch(filterNameOrder(e.target.value))
-            setOrden(e.target.value)
         }
     }
 

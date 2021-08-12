@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogames } from '../../actions'
 import { Link } from 'react-router-dom'
-import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
-import GenreFilter from "../Filters/GenreFilter";
-import DbFilter from "../Filters/DbFilter";
-import RatingOrder from "../Filters/RatingOrder"
 import styleHome from './Home.module.css'
 
 
@@ -50,17 +46,7 @@ export default function Home() {
   }
 
   return (
-    <div className={styleHome.body}>
-      <h1 className={styleHome.h1}>Videogames APP</h1>
-      <Link to="/form">
-        <button>Crea tu Videojuego</button>
-      </Link>
-      <SearchBar />
-      <div className={styleHome.filters}>
-        <GenreFilter />
-        <DbFilter />
-        <RatingOrder />
-      </div>
+    <div>
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (

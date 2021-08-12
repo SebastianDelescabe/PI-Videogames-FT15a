@@ -6,13 +6,14 @@ import VideogameForm from './components/VideogameForm/VideogameForm'
 import Detail from './components/Detail/Detail'
 
 import './App.css';
+import Index from './components/index';
 
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route path="/home" component={Home} />
+        <Route path="/home" component={Index} />
         <Route path="/home" component={SearchBar} />
         <Route exact path="/form" component={VideogameForm} />
         <Route exact path='/:id' component={Detail} />
