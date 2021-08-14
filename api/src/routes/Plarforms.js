@@ -1,23 +1,24 @@
 const { Router } = require('express');
 const axios = require('axios');
-const { Genre } = require('../db');
+const { Platforms } = require('../db');
+
+
 const router = Router();
 
 
-router.get("/genre", async function (req, res) {  
-    const genre = await Genre.findAll()
+router.get("/platforms", async function (req, res) {  
+    const platforms = await Platforms.findAll()
 
     try{
-        if(genre){
-            res.status(200).send(genre)
+        if(platforms){
+            res.status(200).send(platforms)
         }else{
             res.status(404)
         }
-        
+
     }catch(error){
         console.log(error)
     }
-
 })
 
 module.exports = router;
