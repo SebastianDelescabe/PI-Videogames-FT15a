@@ -52,9 +52,30 @@ export function getGenres() {
     }
 }
 
+export function getPlatforms() {
+    return async function (dispatch) {
+        try {
+            const genres = await axios.get("http://localhost:3001/platforms")
+            return dispatch({
+                type: "GET_PLATFORMS",
+                payload: genres.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export function filterGenre(payload) {
     return {
         type: "FILTER_GENRE",
+        payload,
+    }
+}
+
+export function filterPlatforms(payload) {
+    return {
+        type: "FILTER_PLATFORMS",
         payload,
     }
 }

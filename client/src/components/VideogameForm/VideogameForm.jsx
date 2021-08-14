@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { getGenres, postVideogame } from '../../actions'
+import { getGenres, getPlatforms, postVideogame } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -20,7 +20,9 @@ function validate(input) {
 export default function CharacterForm() {
     const dispatch = useDispatch()
     const history = useHistory()
+
     const genres = useSelector((state) => state.genres)
+    const platforms = useSelector((state) => state.platforms)
 
 
     const [input, setInput] = useState({
@@ -30,7 +32,8 @@ export default function CharacterForm() {
         released: "",
         rating: "",
         background_image: "",
-        genres: []
+        genres: [],
+        platforms: []
     })
 
 
@@ -48,10 +51,17 @@ export default function CharacterForm() {
     }
 
 
-    function handleSelect(e) {
+    function handleGenreSelect(e) {
         setInput({
             ...input,
             genres: [...input.genres, e.target.value]
+        })
+    }
+
+    function handlePlatformsSelect(e) {
+        setInput({
+            ...input,
+            platforms: [...input.platforms, e.target.value]
         })
     }
 
@@ -71,7 +81,8 @@ export default function CharacterForm() {
                 released: "",
                 rating: "",
                 background_image: "",
-                genres: []
+                genres: [],
+                platforms: []
             })
             history.push('/home')
         }
@@ -79,6 +90,7 @@ export default function CharacterForm() {
 
     useEffect(() => {
         dispatch(getGenres());
+        dispatch(getPlatforms())
     }, [dispatch]);
 
     return (
@@ -116,15 +128,6 @@ export default function CharacterForm() {
                     }
                 </div>
                 <div>
-                    <label>Plataformas:</label>
-                    <input
-                        type="text"
-                        value={input.platforms}
-                        name="platforms"
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-                <div>
                     <label>Fecha de lanzamiento:</label>
                     <input
                         type="date"
@@ -157,7 +160,15 @@ export default function CharacterForm() {
                     />
                 </div>
                 <div>
-                    <select onChange={(e) => handleSelect(e)}>
+                    <select onChange={(e) => handlePlatformsSelect(e)}>
+                        {platforms.map((e) => (
+                            <option value={e.name}> {e.name} </option>
+                        ))}
+                    </select>
+                    <p>{input.platforms.map(e => e + ",")}</p>
+                </div>
+                <div>
+                    <select onChange={(e) => handleGenreSelect(e)}>
                         {genres.map((e) => (
                             <option value={e.name}> {e.name} </option>
                         ))}

@@ -2,6 +2,7 @@ const initialState = {
     videogames: [],
     backUpVideogames: [],
     genres: [],
+    platforms:[],
     detail: [],
 }
 
@@ -25,6 +26,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 genres: action.payload
             }
+        case "GET_PLATFORMS":
+            return{
+                ...state,
+                platforms:action.payload
+            }
 
         case "GET_DETAIL":
             return {
@@ -45,8 +51,22 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 videogames: genreFilter
-
             }
+
+        case "FILTER_PLATFORMS":
+            const platformFilter = action.payload === "all" ? state.backUpVideogames :
+            state.backUpVideogames.filter(e => {
+                for (let i = 0; i < e.platforms.length; i++) {
+                    if (e.platforms[i].name === action.payload) {
+                        return true
+                    }
+                }
+                return undefined
+            })
+        return {
+            ...state,
+            videogames: platformFilter
+        }
 
         case "FILTER_BD":
             const bdFilter = action.payload === "true" ? state.backUpVideogames.filter(e => e.createdDb) : state.backUpVideogames

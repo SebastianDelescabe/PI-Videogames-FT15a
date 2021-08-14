@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from '../../actions'
-import parse from 'html-react-parser'  //npm install html-react-parser --save
+import parse from 'html-react-parser'  
 
 export default function Detail() {
 
