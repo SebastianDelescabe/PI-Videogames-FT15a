@@ -88,12 +88,12 @@ router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI N
         if (name && name !== "") {
             const searchName = allVideogames.filter(e => e.name.toLowerCase().includes(name.toLocaleLowerCase())).slice(0, 15)
             if (searchName.length > 0) {
-                res.status(200).send(searchName)
+                return res.status(200).send(searchName)
             } else {
-                res.status(404).send("No se encontro video juego")
+                return res.status(404).send("No se encontro video juego")
             }
         } else {
-            res.status(200).send(allVideogames)
+            return res.status(200).send(allVideogames)
         }
     } catch (error) {
         console.log(error.message)
@@ -118,6 +118,11 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
                     description: e.description,
                     released: e.released,
                     rating: e.rating,
+                    platforms: e.platforms.map(e => {
+                        return {
+                            name: e.platform.name
+                        }
+                    }),
                 }
             })
             const videoGameApiId = apiData.filter(e => e.id == id)
@@ -171,12 +176,37 @@ router.post("/games", async function (req, res) {   //POST GAMES
 
         await newGame.addGenre(genreDb)
         await newGame.addPlatforms(platformDb)
-        res.send("Personaje Creado")
+        return res.send("Personaje Creado")
 
     } else {
-        res.status(404).send("Completar formulario correctamente")
+        return res.status(404).send("Completar formulario correctamente")
     }
 
 })
+
+
+router.delete('/delete/:id', async function (req, res) {
+    const { id } = req.params;
+
+    try{
+        const dbGame = await Videogame.findAll({
+            where:{
+                id : id
+            }
+        })
+        if(dbGame){
+            Videogame.destroy({
+                where:{
+                    id:id
+                }
+            })
+        }else{
+            return res.send(error)
+        }
+
+    }catch(error){
+        console.log(error)
+    }
+});
 
 module.exports = router, apiInfo

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from '../../actions'
-import parse from 'html-react-parser'  
+import parse from 'html-react-parser'
 
 export default function Detail() {
 
@@ -20,7 +20,7 @@ export default function Detail() {
                 setLoading(false);
             })
             .catch(error => console.log(error));
-    }, [dispatch, id])
+    }, [dispatch])
 
     if (loading) {
         return (
@@ -29,7 +29,6 @@ export default function Detail() {
             </div>
         )
     }
-
 
     return (
         <div>
@@ -42,7 +41,7 @@ export default function Detail() {
                     <h2>Rating</h2>
                     <p> {details[0].rating} </p>
                     <h2>plataformas</h2>
-                    <p> {details[0].platforms} </p>
+                    <p> {details[0].platforms.map(e => e.name + "-")} </p>
                     <img src={details[0].background_image} alt="" width="500px" height="500px" />
                 </div>
             }

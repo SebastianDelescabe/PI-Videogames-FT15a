@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideogames } from '../../actions'
-import { Link } from 'react-router-dom'
+import { getVideogames,deleteDbGame } from '../../actions'
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import styleHome from './Home.module.css'
 
 
 export default function Home() {
-
 
   const dispatch = useDispatch()
   const videogames = useSelector((state) => state.videogames)
@@ -24,7 +22,7 @@ export default function Home() {
   function pagination(pageNumber) {
     setCurrentPage(pageNumber)
   }
-
+  //---------------------------
 
   const [loading, setLoading] = useState(true);
 
@@ -50,9 +48,15 @@ export default function Home() {
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
-            <Link to={"/" + e.id} >
-              <VideogameCard name={e.name} genres={e.genres.map(e => e.name)} img={e.background_image} rating={e.rating} key={e.id} />
-            </Link>
+            <VideogameCard
+              name={e.name}
+              genres={e.genres.map(e => e.name)}
+              img={e.background_image}
+              rating={e.rating}
+              id={e.id}
+              createdDb={e.createdDb}
+              key={e.id}
+            />
           ))
         }
       </div>

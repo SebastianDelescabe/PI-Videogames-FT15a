@@ -110,8 +110,13 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: sortedGames
             }
-        case "POST_VIDEOGAMES":  //NO HACE NADA PERO TIENE QUE ESTAR EN EL REDUCER
+        case "POST_VIDEOGAMES": 
             return {
+                ...state,
+            }
+
+        case "DELETE_DB_GAME":
+            return{
                 ...state,
             }
 

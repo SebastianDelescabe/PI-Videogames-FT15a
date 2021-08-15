@@ -39,7 +39,7 @@ export default function CharacterForm() {
 
     const [errors, setErrors] = useState({})
 
-    function handleChange(e) {
+    function handleInputChange(e) {
         setInput({
             ...input,
             [e.target.name]: e.target.value
@@ -104,7 +104,7 @@ export default function CharacterForm() {
                         type="text"
                         value={input.name}
                         name="name"
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleInputChange(e)}
                     />
                     {
                         errors.name && (
@@ -118,12 +118,11 @@ export default function CharacterForm() {
                         type="text"
                         value={input.description}
                         name="description"
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleInputChange(e)}
                     />
                     {
                         errors.description && (
                             <p> {errors.description} </p>
-
                         )
                     }
                 </div>
@@ -133,7 +132,7 @@ export default function CharacterForm() {
                         type="date"
                         value={input.released}
                         name="released"
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </div>
                 <div>
@@ -142,7 +141,7 @@ export default function CharacterForm() {
                         type="number"
                         name="rating"
                         value={input.rating}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleInputChange(e)}
                     />
                     {
                         errors.rating && (
@@ -156,7 +155,7 @@ export default function CharacterForm() {
                         type="url"
                         name="background_image"
                         value={input.background_image}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </div>
                 <div>
@@ -178,7 +177,7 @@ export default function CharacterForm() {
                 {
                     errors && (errors.name || errors.rating || errors.description) ? <p>Completar Formulario</p>
                         :
-                        <button onSubmit={(e) => handleSubmit(e)} type="submit">Crear Personaje</button>
+                        <button type="submit">Crear Personaje</button>
                 }
             </form>
         </div>
