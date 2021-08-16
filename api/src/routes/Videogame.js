@@ -5,7 +5,7 @@ const { Videogame, Genre, Platforms } = require('../db');
 const router = Router();
 
 
-async function apiInfo() { //TRAE INFO DE API
+async function apiInfo () { //TRAE INFO DE API
     let promises = []
     let allGames = []
 
@@ -96,14 +96,13 @@ router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI N
             return res.status(200).send(allVideogames)
         }
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
 })
 
 
 router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const { id } = req.params
-    const arrDbInfo = []
     const arrApiInfo = []
 
     try {
@@ -133,8 +132,7 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
                 return res.status(404).send("No se encontro Videojuego con ese ID")
             }
         } else {
-            const videoGameBdId = await Videogame.findByPk(id)
-            arrDbInfo.push(videoGameBdId)
+            const arrDbInfo = await bdInfo()
             const filtro = arrDbInfo.filter(e => e.id == id)
 
             if (filtro.length > 0) {
@@ -154,7 +152,7 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
 router.post("/games", async function (req, res) {   //POST GAMES
     const { name, description, released, rating, platforms, background_image, createdDb, genres } = req.body
 
-    if (name && description && genres) {
+    if (name && description && genres && platforms ) {
         let newGame = await Videogame.create({
             name,
             description,
@@ -176,7 +174,8 @@ router.post("/games", async function (req, res) {   //POST GAMES
 
         await newGame.addGenre(genreDb)
         await newGame.addPlatforms(platformDb)
-        return res.send("Personaje Creado")
+
+        return res.status(200).send("Peronsaje creado")
 
     } else {
         return res.status(404).send("Completar formulario correctamente")
@@ -200,8 +199,9 @@ router.delete('/delete/:id', async function (req, res) {
                     id:id
                 }
             })
+            return res.status(200)
         }else{
-            return res.send(error)
+            return res.status(404).send("error")
         }
 
     }catch(error){

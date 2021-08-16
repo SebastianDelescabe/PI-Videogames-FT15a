@@ -177,7 +177,7 @@ export default function CharacterForm() {
                 {
                     errors && (errors.name || errors.rating || errors.description) ? <p>Completar Formulario</p>
                         :
-                        <button type="submit">Crear Personaje</button>
+                        <button type="submit">Crear Videojuego</button>
                 }
             </form>
         </div>
