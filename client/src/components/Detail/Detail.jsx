@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from '../../actions'
-import parse from 'html-react-parser'
+import styleDetail from './Detail.module.css'
 
 export default function Detail() {
 
@@ -20,7 +20,7 @@ export default function Detail() {
                 setLoading(false);
             })
             .catch(error => console.log(error));
-    }, [dispatch])
+    }, [dispatch, id])
 
     if (loading) {
         return (
@@ -30,24 +30,28 @@ export default function Detail() {
         )
     }
 
+    var parser = new DOMParser();
+    var htmlDoc = parser.parseFromString(details[0].description, 'text/html')
+    const description = htmlDoc.body.innerText
+
     return (
         <div>
-            {
-                <div>
-                    <h1> {details[0].name} </h1>
-                    <p> {parse(`${details[0].description}`)} </p>
-                    <h2>lanzamiento</h2>
-                    <p> {details[0].released} </p>
-                    <h2>Rating</h2>
-                    <p> {details[0].rating} </p>
-                    <h2>plataformas</h2>
-                    <p> {details[0].platforms.map(e => e.name + "-")} </p>
-                    <img src={details[0].background_image} alt="" width="500px" height="500px" />
-                </div>
-            }
-            <Link to="/home">
-                <button>Volver</button>
-            </Link>
+            <div>
+                <h1> {details[0].name} </h1>
+                <img className={styleDetail.img} src={details[0].background_image} alt="" width="500px" height="300px" />
+                <p className={styleDetail.description}>{description}</p>
+                <h2 className={styleDetail.h2}>Lanzamiento:</h2>
+                <p className={styleDetail.p}> {details[0].released} </p>
+                <h2 className={styleDetail.h2}>Rating:</h2>
+                <p className={styleDetail.p}> {details[0].rating} </p>
+                <h2 className={styleDetail.platforms} >Plataformas:</h2>
+                <p className={styleDetail.pPlatforms}> {details[0].platforms.map(e => (e.name))} </p>
+            </div>
+            <div>
+                <Link to="/home">
+                    <button>Volver</button>
+                </Link>
+            </div>
         </div>
     )
 }

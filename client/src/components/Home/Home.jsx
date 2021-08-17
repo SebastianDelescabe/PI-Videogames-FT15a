@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideogames,deleteDbGame } from '../../actions'
+import { getVideogames } from '../../actions'
 import VideogameCard from "../VideogameCard/VideogameCard";
 import Pagination from '../Pagination/Pagination '
 import styleHome from './Home.module.css'
@@ -25,20 +25,29 @@ export default function Home() {
   //---------------------------
 
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     dispatch(getVideogames())
       .then(response => {
         setLoading(false)
       })
-      .catch(error => console.log(error))
+      .catch(error => setError(error.message))
   }, [dispatch])
 
 
+  if (error) {
+    return (
+      <div className="ERROR">
+        <h1>{error}</h1>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
-      <div className="loading">
-        <h1>Loading</h1>
+      <div className={styleHome.loading}>
+        <h1 ></h1>
       </div>
     )
   }

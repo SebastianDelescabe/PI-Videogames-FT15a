@@ -1,10 +1,12 @@
 .h1{
-    color: deeppink;
+    font-family:monospace;
+    color:#44c767;
+    font-size: 35px;
     padding: 10px;
-    border: solid 2px deeppink;
     margin-left: 500px;
     margin-right: 500px;
     background-color: white;
+    font-family: monospace;
 }
 
 .filters{

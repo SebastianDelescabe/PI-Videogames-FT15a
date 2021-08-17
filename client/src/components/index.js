@@ -12,7 +12,7 @@ export default function Index() {
 
     return (
         <div>
-            <h1 className={styleIndex.h1}>Videogames APP</h1>
+            <h1 className={styleIndex.h1}>VIDEOJUEGOS APP</h1>
             <Link to="/form">
                 <button>Crea tu Videojuego</button>
             </Link>

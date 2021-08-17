@@ -1,4 +1,122 @@
-.genresBox{
+.danger {
+    color: red;
+    font-size: 12px;
+    display:inline-block;
+    margin-left: 5px;
+    position:absolute;
+}
+
+.label{
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 1px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    font-family:fantasy;
+    color:lightseagreen;
+    letter-spacing:0.5px
+}
+.labelGenre{
+    margin-right: 10px;
+    font-family:fantasy;
+    color:lightseagreen;
+    letter-spacing:0.5px;
+    font-size: 20px;
+}
+
+.labelPlatforms{
+    margin-right: 10px;
+    font-family:fantasy;
+    color:lightseagreen;
+    letter-spacing:0.5px;
+    font-size: 20px;
+}
+
+.h1{
+    font-family:monospace;
+    color:#44c767;
+    font-size: 35px;
+
+}
+
+.inputs {
+    height: 15px;
+    width: 185px;
+    text-align: center;
+}
+
+.inputImage {
+    height: 15px;
+    width: 350px;
+    text-align: center;
+}
+.inputDescription {
+    height: 6em;
+    width: 400px;
+}
+
+.form{
+    border: 1px solid black;
+    padding-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.genres{
+    position:absolute; 
+    top:150px; 
+    left: 150px;
+    padding: 20px;
+}
+
+.platforms{
+    position:absolute; 
+    top:150px; 
+    left: 1000px;
+    padding: 20px;
+}
+
+.buttonDanger{
+    color: red;
+    font-size: 18px;
+}
+
+.button {
+    margin-top: 20px;
+	background-color:#44c767;
+	border-radius:2px;
+	border:1px solid #18ab29;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:monospace;
+	font-size:15px;
+	padding:10px 30px;
+    letter-spacing: 1px;
+}
+.button:hover {
+	background-color:white;
+    color: lightseagreen;;
+}
+
+
+.buttonVolver{
+    margin-top: 25px;
+    font-family:fantasy;
+}
+
+.buttonClose{
+    display:inline-block;
+    margin-left: 2px;
+    font-size: 15px;
+    color: red;
+    background-color: white;
+    border:0px solid 
+}
+
+.li{
+    font-family:monospace;
+    color:#44c767;
+    font-size: 18px;
+    margin-top: 15px;
 }
