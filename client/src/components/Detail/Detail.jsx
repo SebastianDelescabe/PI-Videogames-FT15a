@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from '../../actions'
 import styleDetail from './Detail.module.css'
 
-export default function Detail() {
-
-
-    let { id } = useParams();
+export default function Detail(props) {
+    console.log(props)
 
     const dispatch = useDispatch()
     const details = useSelector(state => state.detail)
@@ -15,12 +13,12 @@ export default function Detail() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        dispatch(getDetail(id))
+        dispatch(getDetail(props.match.params.id))
             .then(response => {
                 setLoading(false);
             })
             .catch(error => console.log(error));
-    }, [dispatch, id])
+    }, [dispatch])
 
 
     if (loading) {
@@ -57,9 +55,9 @@ export default function Detail() {
                 <Link to="/home">
                     <button className={styleDetail.btnclose}>Home</button>
                 </Link>
-                <Link to={`/detail/${Math.floor(Math.random() * 100000)}`}>
+                {/* <Link to={`/detail/${Math.floor(Math.random() * 100000)}`}>
                     <button className={styleDetail.btnclose}>Random Game</button>
-                </Link>
+                </Link> */}
             </div>
         </div>
     )
