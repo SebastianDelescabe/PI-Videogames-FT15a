@@ -13,7 +13,7 @@ export default function Home() {
 
   //-------Paginado---------
   const [currentPage, setCurrentPage] = useState(1)
-  const [videogamesPerPage, setVideogmesPerPage] = useState(9)
+  const [videogamesPerPage, setVideogmesPerPage] = useState(9)  //eslint-disable-line
   const indexLastVideogames = currentPage * videogamesPerPage //9 1*9 = 9
   const indexFirstVideogames = indexLastVideogames - videogamesPerPage// = 0 9-9 = 0
 
@@ -47,7 +47,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className={styleHome.loading}>
-        <h1 ></h1>
+        <h1>-</h1> 
       </div>
     )
   }

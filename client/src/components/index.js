@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar/SearchBar";
 import GenreFilter from "./Filters/GenreFilter";
 import DbFilter from "./Filters/DbFilter";

@@ -18,7 +18,7 @@ function validate(input) {
     }
     if (!input.released) {
         errors.released = "Complete date"
-    } else if (!/^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/.test(input.released)) {
+    } else if (!/^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/.test(input.released)) { //eslint-disable-line
         errors.released = "Format error (dd//mm/yy)"
     } else {
         errors.released = ""
@@ -109,7 +109,7 @@ export default function CharacterForm() {
                 rating: "",
                 background_image: "",
                 genres: [],
-                platforms: []
+                platforms: [] //eslint-disable-line
             })
             history.push('/home')
         }
