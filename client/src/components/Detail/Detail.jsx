@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams , useHistory } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from '../../actions'
 import styleDetail from './Detail.module.css'
-import RandomGame from '../Filters/RandomGame'
 
 export default function Detail() {
 
 
     let { id } = useParams();
-    
-    const history = useHistory()
+
     const dispatch = useDispatch()
     const details = useSelector(state => state.detail)
 
@@ -19,7 +17,6 @@ export default function Detail() {
     useEffect(() => {
         dispatch(getDetail(id))
             .then(response => {
-                console.log(response)
                 setLoading(false);
             })
             .catch(error => console.log(error));
@@ -28,10 +25,13 @@ export default function Detail() {
 
     if (loading) {
         return (
-            <div className={styleDetail.loading}>
-                {
+            <div>
+                <Link to="/home">
+                    <button className={styleDetail.btnBack}>Home</button>
+                </Link>
+                <div className={styleDetail.loading}>
+                </div>
 
-                }
             </div>
         )
     }
@@ -42,7 +42,6 @@ export default function Detail() {
 
     return (
         <div className={styleDetail.background}>
-            <RandomGame/>
             <div className={styleDetail.border}>
                 <h1 className={styleDetail.h1}> {details[0].name} </h1>
                 <img className={styleDetail.img} src={details[0].background_image} alt="" width="500px" height="300px" />
@@ -57,6 +56,9 @@ export default function Detail() {
             <div>
                 <Link to="/home">
                     <button className={styleDetail.btnclose}>Home</button>
+                </Link>
+                <Link to={`/detail/${Math.floor(Math.random() * 100000)}`}>
+                    <button className={styleDetail.btnclose}>Random Game</button>
                 </Link>
             </div>
         </div>

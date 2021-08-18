@@ -20,7 +20,7 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
     return (
         <div className={cardCss.cnt}>
             <div className = {cardCss.h1btn}> 
-                <Link to = {`/detail/${id}`} >
+                <Link to = {`/detail/${id}`} style={{ textDecoration: 'none' }} >
                     <h1 className={cardCss.h1}>{name}</h1>
                 </Link>
                 {

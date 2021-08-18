@@ -1,0 +1,38 @@
+.div{
+    display: flex;
+    flex-direction: row;
+}
+.search {
+    font-family:monospace;
+    color: red;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.error{
+    font-family:monospace;
+    letter-spacing:0.5px;
+    color: red;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 30px;
+    margin-left: 179px;
+}
+
+.button{
+    color: white;
+    background-color: transparent;
+    font-family: fantasy;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.input{
+    border: 1px solid transparent;
+    font-family: fantasy;
+    font-size: 20px;
+}
+.input::placeholder{
+    font-size: 18px;
+}
+

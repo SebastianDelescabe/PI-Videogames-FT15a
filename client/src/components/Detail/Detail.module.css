@@ -81,7 +81,9 @@
     font-family:fantasy;
     margin-bottom: 20px;
     cursor: pointer;
+    margin-left: 10px;
 }
+
 .loading{
     border: 16px solid #f3f3f3; 
     border-top: 16px solid deeppink; 
@@ -97,4 +99,12 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  .btnBack{
+    width: 150px;;
+    margin-top: 25px;
+    font-family:fantasy;
+    margin-bottom: 20px;
+    cursor: pointer;
   }

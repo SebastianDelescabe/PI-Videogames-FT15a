@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getNameVideogame } from '../../actions'
+import styleSearchBar from './SearchBar.module.css'
 
 export default function SearchBar() {
 
@@ -29,16 +30,18 @@ export default function SearchBar() {
 
     return (
         <div>
+            <div className = {styleSearchBar.div}>
             {
                 error && (
-                    <p>Game not found</p>
+                    <p className={styleSearchBar.error}>Game not found</p>
                 )
             }
             {
-                loading && loading ? <p>Searching...</p> : null
+                loading && loading ? <p className={styleSearchBar.search} >Searching...</p> : null
             }
-            <button onClick={((e) => handleSubmit(e))} type="submit">Search</button>
-            <input onChange={((e) => handleInputChange(e))} placeholder="Name..." type="text" />
+            </div>
+            <button className={styleSearchBar.button} onClick={((e) => handleSubmit(e))} type="submit">Search</button>
+            <input className={styleSearchBar.input} onChange={((e) => handleInputChange(e))} placeholder="Name..." type="text" />
         </div>
     )
 }
