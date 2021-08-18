@@ -24,14 +24,6 @@ describe('Videogame GET', () => {
   }))
 });
 
-describe("Videogame POST", () => {
-  it('should create a new game', async () => {
-    agent.post("/games").then((res) => {
-      Videogame.create(videogame)
-      expect(res.body).to.have.property('name')
-    })
-  })
-})
 
 describe("Genre GET", () => {
   it("should get status 200", () => agent.get("/genre").expect(200))

@@ -146,7 +146,7 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
                 return res.status(404).send("No se encontro Videojuego con ese ID")
             }
         } catch (error) {
-            console.log(error)
+            console.log(error.response.statusText)
         }
     }
 })
