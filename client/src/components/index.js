@@ -7,22 +7,28 @@ import RatingOrder from "./Filters/RatingOrder"
 import PlatformFilter from "./Filters/PlatformFilter";
 import Home from "./Home/Home"
 import styleIndex from "./index.module.css"
+import RandomGame from "./Filters/RandomGame";
 
 export default function Index() {
 
     return (
-        <div>
-            <h1 className={styleIndex.h1}>VIDEOJUEGOS APP</h1>
-            <Link to="/form">
-                <button>Crea tu Videojuego</button>
-            </Link>
-            <div className={styleIndex.filters}>
-                <PlatformFilter/>
-                <GenreFilter />
-                <DbFilter />
-                <RatingOrder />
-                <SearchBar />
-            </div >
+        <div className={styleIndex.background}>
+            <img className={styleIndex.img} src="https://i.ibb.co/D7dp7b5/banner-2.png" width="1400px" height="" />
+            <div className={styleIndex.buttons}>
+                <Link to="/form">
+                    <button className={styleIndex.btnForm}>CREATE GAME</button>
+                </Link>
+                <RandomGame />
+            </div>
+            <div className={styleIndex.banner}>
+                <div className={styleIndex.filters}>
+                    <PlatformFilter />
+                    <GenreFilter />
+                    <DbFilter />
+                    <RatingOrder />
+                    <SearchBar />
+                </div >
+            </div>
             <Home />
         </div>
     )

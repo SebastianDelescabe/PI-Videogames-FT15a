@@ -1,0 +1,17 @@
+.label {
+    color: white;
+}
+
+
+.btnRandomGame{
+    margin-right: 18px;
+    width: 300px;
+    border: 1px solid rgb(209, 37, 129);
+    background-color: rgb(209, 37, 129);
+    font-family: fantasy;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 350px;
+    margin-top: 10px;
+
+}

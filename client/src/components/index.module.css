@@ -1,17 +1,38 @@
-.h1{
-    font-family:monospace;
-    color:#44c767;
-    font-size: 35px;
-    padding: 10px;
-    margin-left: 500px;
-    margin-right: 500px;
-    background-color: white;
-    font-family: monospace;
-}
 
 .filters{
     display: flex;
     align-items: center;
     justify-content:space-evenly;
     padding: 10px;
+}
+
+.background{
+    background-image: url("https://i.ibb.co/9t86QM7/16-32.jpg");
+    overflow:auto;
+    height: 705px;
+}
+
+.banner{
+    margin:20px 50px 20px 60px;
+    background-color:rgb(46, 41, 80,0.8);
+    border: 1px solid rgb(209, 37, 129);
+    padding: 20px;
+}
+
+.btnForm{
+    margin-right: 18px;
+    margin-left: 200px;
+    width: 300px;
+    border: 1px solid rgb(209, 37, 129);
+    background-color: rgb(209, 37, 129);
+    font-family: fantasy;
+    font-size: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
 }

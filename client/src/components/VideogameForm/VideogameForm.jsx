@@ -8,29 +8,29 @@ import styleForm from './VideogameForm.module.css'
 function validate(input) {
     let errors = {}
     if (!input.name) {
-        errors.name = "Se requiere nombre"
+        errors.name = "Name required"
     }
     if (!input.description) {
-        errors.description = "Debe completar la descripcion"
+        errors.description = "Complete description"
     }
     if (!input.rating || input.rating > 5 || input.rating < 0) {
-        errors.rating = "Rating de 0 al 5"
+        errors.rating = "Rating valid 0 - 5"
     }
-    if(!input.released){
-        errors.released = "Ingresar fecha"
-    }else if(!/^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/.test(input.released)){
-        errors.released = "ingresar formato valido"
-    }else{
+    if (!input.released) {
+        errors.released = "Complete date"
+    } else if (!/^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/.test(input.released)) {
+        errors.released = "Format error (dd//mm/yy)"
+    } else {
         errors.released = ""
     }
     if (input.platforms.length < 1) {
-        errors.platforms = "Ingresar plataformas"
-    }else{
+        errors.platforms = "Enter platforms"
+    } else {
         errors.platforms = ""
     }
     if (input.genres < 1) {
-        errors.genres = "Ingresar generos"
-    }else{
+        errors.genres = "Enter genres"
+    } else {
         errors.platforms = ""
     }
     return errors
@@ -141,11 +141,11 @@ export default function CharacterForm() {
 
 
     return (
-        <div>
-            <h1 className={styleForm.h1}>Formulario videojuegos</h1>
+        <div className={styleForm.background}>
+            <h1 className={styleForm.h1}>CREATE GAME</h1>
             <form className={styleForm.form} onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                    <label className={styleForm.label}>Nombre:</label>
+                    <label className={styleForm.label}>Name:</label>
                     <input
                         className={styleForm.inputs}
                         type="text"
@@ -177,7 +177,7 @@ export default function CharacterForm() {
                 </div>
 
                 <div>
-                    <label className={styleForm.label}>Fecha de lanzamiento:</label>
+                    <label className={styleForm.label}>Release Date:</label>
                     <input
                         className={styleForm.inputs}
                         type="text"
@@ -185,7 +185,7 @@ export default function CharacterForm() {
                         name="released"
                         onChange={(e) => handleInputChange(e)}
                     />
-                                        {
+                    {
                         errors.released && (
                             <div className={styleForm.danger} > {errors.released} </div>
                         )
@@ -193,7 +193,7 @@ export default function CharacterForm() {
                 </div>
 
                 <div >
-                    <label className={styleForm.label} >Imagen:</label>
+                    <label className={styleForm.label} >Image:</label>
                     <input
                         className={styleForm.inputImage}
                         type="url"
@@ -204,13 +204,13 @@ export default function CharacterForm() {
                 </div>
 
                 <div>
-                    <label className={styleForm.label} >Descripcion:</label>
+                    <label className={styleForm.label} >Description:</label>
                     <textarea
                         type="text"
                         value={input.inputDescription}
                         name="description"
                         onChange={(e) => handleInputChange(e)}
-                        rows="10" cols="50"
+                        rows="5" cols="45"
                     />
                     {
                         errors.description && (
@@ -220,7 +220,7 @@ export default function CharacterForm() {
                 </div>
 
                 <div className={styleForm.platforms} >
-                    <label className={styleForm.labelPlatforms} >Plataformas:</label>
+                    <label className={styleForm.labelPlatforms} >Platforms:</label>
                     <select onChange={(e) => handlePlatformsSelect(e)}>
                         {
                             platforms.map((e) => (
@@ -230,7 +230,7 @@ export default function CharacterForm() {
                     </select>
                     {input.platforms.map(e => (
                         <div>
-                            <li className = {styleForm.li}>{e}<button
+                            <li className={styleForm.li}>{e}<button
                                 className={styleForm.buttonClose}
                                 type="button"
                                 onClick={() => handlePlatformDelete(e)}
@@ -246,7 +246,7 @@ export default function CharacterForm() {
                 </div >
 
                 <div className={styleForm.genres}>
-                    <label className={styleForm.labelGenre} >Generos:</label>
+                    <label className={styleForm.labelGenre} >Genres:</label>
                     <select onChange={(e) => handleGenreSelect(e)}>
                         {
                             genres.map((e) => (
@@ -257,7 +257,7 @@ export default function CharacterForm() {
                     <ul>
                         {input.genres.map(e => (
                             <div>
-                                <li className = {styleForm.li}>{e}<button
+                                <li className={styleForm.li}>{e}<button
                                     className={styleForm.buttonClose}
                                     type="button"
                                     onClick={() => handleGenreDelete(e)}
@@ -273,17 +273,18 @@ export default function CharacterForm() {
                     }
                 </div>
                 {
-                    errors && (errors.name || errors.rating || errors.description || errors.genres || errors.platforms) ? <p className={styleForm.buttonDanger} >Completar formulario</p>
+                    errors && (errors.name || errors.rating || errors.description || errors.genres || errors.platforms) ?
+                        <p className={styleForm.buttonDanger} >Complete Form</p>
                         :
                         <button
                             type="submit"
                             className={styleForm.button}
-                        >Agregar videojuego
+                        >Add Videogame
                         </button>
                 }
             </form>
             <Link to="/home">
-                <button className={styleForm.buttonVolver}>Volver a Home</button>
+                <button className={styleForm.buttonVolver}>Home</button>
             </Link>
         </div>
     )

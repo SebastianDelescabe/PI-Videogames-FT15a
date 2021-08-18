@@ -13,29 +13,29 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family:fantasy;
-    color:lightseagreen;
+    font-family:monospace;
+    color:rgb(209, 37, 129);
     letter-spacing:0.5px
 }
 .labelGenre{
     margin-right: 10px;
-    font-family:fantasy;
-    color:lightseagreen;
+    font-family:monospace;
+    color:rgb(209, 37, 129);
     letter-spacing:0.5px;
     font-size: 20px;
 }
 
 .labelPlatforms{
     margin-right: 10px;
-    font-family:fantasy;
-    color:lightseagreen;
+    font-family:monospace;
+    color:rgb(209, 37, 129);
     letter-spacing:0.5px;
     font-size: 20px;
 }
 
 .h1{
-    font-family:monospace;
-    color:#44c767;
+    font-family:fantasy;
+    color:rgb(209, 37, 129);
     font-size: 35px;
 
 }
@@ -54,13 +54,17 @@
 .inputDescription {
     height: 6em;
     width: 400px;
+    background-color:black;
 }
 
 .form{
     border: 1px solid black;
+    padding-top: 20px;
     padding-bottom: 20px;
     margin-left: 50px;
     margin-right: 50px;
+    background-color:rgb(46, 41, 80,0.8);
+    box-shadow: 4px 2px 10px 1px rgb(209, 37, 129)
 }
 
 .genres{
@@ -84,9 +88,9 @@
 
 .button {
     margin-top: 20px;
-	background-color:#44c767;
+	background-color:rgb(209, 37, 129);
 	border-radius:2px;
-	border:1px solid #18ab29;
+	border:1px solid rgb(209, 37, 129);
 	cursor:pointer;
 	color:#ffffff;
 	font-family:monospace;
@@ -96,27 +100,35 @@
 }
 .button:hover {
 	background-color:white;
-    color: lightseagreen;;
+    color: rgb(209, 37, 129);
 }
 
 
 .buttonVolver{
+    width: 150px;;
     margin-top: 25px;
     font-family:fantasy;
+    cursor:pointer;
+    margin-top: 60px;
 }
 
 .buttonClose{
-    display:inline-block;
     margin-left: 2px;
     font-size: 15px;
     color: red;
-    background-color: white;
-    border:0px solid 
+    background-color:transparent;
+    cursor:pointer;
 }
 
 .li{
     font-family:monospace;
-    color:#44c767;
+    color:white;
     font-size: 18px;
     margin-top: 15px;
+}
+
+.background{
+    background-image: url("https://i.ibb.co/9t86QM7/16-32.jpg");
+    overflow:auto;
+    height: 705px;
 }

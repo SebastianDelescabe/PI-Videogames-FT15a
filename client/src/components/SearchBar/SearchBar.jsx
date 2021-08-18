@@ -31,14 +31,14 @@ export default function SearchBar() {
         <div>
             {
                 error && (
-                    <p>Juego no encontrado</p>
+                    <p>Game not found</p>
                 )
             }
             {
-                loading && loading ? <p>Buscando...</p> : null
+                loading && loading ? <p>Searching...</p> : null
             }
-            <button onClick={((e) => handleSubmit(e))} type="submit">Buscar</button>
-            <input onChange={((e) => handleInputChange(e))} placeholder="Nombre..." type="text" />
+            <button onClick={((e) => handleSubmit(e))} type="submit">Search</button>
+            <input onChange={((e) => handleInputChange(e))} placeholder="Name..." type="text" />
         </div>
     )
 }

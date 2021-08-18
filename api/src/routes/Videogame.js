@@ -5,7 +5,7 @@ const { Videogame, Genre, Platforms } = require('../db');
 const router = Router();
 
 
-async function apiInfo () { //TRAE INFO DE API
+async function apiInfo() { //TRAE INFO DE API
     let promises = []
     let allGames = []
 
@@ -105,10 +105,24 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const { id } = req.params
     const arrApiInfo = []
 
-    try {
-        if (!id.includes("-")) {
+    if (id.includes("-")) {
+        try {
+            const arrDbInfo = await bdInfo()
+            const filtro = arrDbInfo.filter(e => e.id == id)
+
+            if (filtro.length > 0) {
+                return res.status(200).send(filtro)
+            } else {
+                return res.status(404).send("No se encontro Videojuego con ese ID")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        try {
             const info = await axios.get(`https://api.rawg.io/api/games/${id}?key=${process.env.API_KEY}`)
             arrApiInfo.push(info.data)
+
             const apiData = arrApiInfo.map(e => {
                 return {
                     id: e.id,
@@ -124,35 +138,24 @@ router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
                     }),
                 }
             })
-            const videoGameApiId = apiData.filter(e => e.id == id)
+            const game = apiData.filter(e => e.id == id)
 
-            if (videoGameApiId.length > 0) {
-                return res.status(200).send(videoGameApiId)
+            if (game.length > 0) {
+                return res.status(200).send(game)
             } else {
                 return res.status(404).send("No se encontro Videojuego con ese ID")
             }
-        } else {
-            const arrDbInfo = await bdInfo()
-            const filtro = arrDbInfo.filter(e => e.id == id)
-
-            if (filtro.length > 0) {
-                return res.status(200).send(filtro)
-            } else {
-                return res.status(404).send("No se encontro Videojuego con ese ID")
-            }
+        } catch (error) {
+            console.log(error)
         }
-    } catch (error) {
-        console.log(error)
     }
-
-
 })
 
 
 router.post("/games", async function (req, res) {   //POST GAMES
     const { name, description, released, rating, platforms, background_image, createdDb, genres } = req.body
 
-    if (name && description && genres && platforms ) {
+    if (name && description && genres && platforms) {
         let newGame = await Videogame.create({
             name,
             description,
@@ -187,24 +190,24 @@ router.post("/games", async function (req, res) {   //POST GAMES
 router.delete('/delete/:id', async function (req, res) {
     const { id } = req.params;
 
-    try{
+    try {
         const dbGame = await Videogame.findAll({
-            where:{
-                id : id
+            where: {
+                id: id
             }
         })
-        if(dbGame){
+        if (dbGame) {
             Videogame.destroy({
-                where:{
-                    id:id
+                where: {
+                    id: id
                 }
             })
             return res.status(200)
-        }else{
+        } else {
             return res.status(404).send("error")
         }
 
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 });

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { filterBd } from '../../actions'
+import styleFilter from './Filters.module.css'
 
 export default function DbFilter() {
     const dispatch = useDispatch()
@@ -20,8 +21,8 @@ export default function DbFilter() {
 
     return (
         <div>
-            <input onChange={(e) => handleCheck(e)} type="checkbox" value={checkBd} />
-            <label >Juegos creados</label>
+            <input className={styleFilter.input} onChange={(e) => handleCheck(e)} type="checkbox" value={checkBd} />
+            <label className={styleFilter.label}  >Games Created</label>
         </div>
     )
 

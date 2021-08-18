@@ -1,23 +1,19 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage';
-import Home from './components/Home/Home'
-import SearchBar from './components/SearchBar/SearchBar';
 import VideogameForm from './components/VideogameForm/VideogameForm'
 import Detail from './components/Detail/Detail'
 
 import './App.css';
-import Index from './components/index';
+import Index from './components/index'
 
 function App() {
+
   return (
     <div className="App">
-      <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route path="/home" component={Index} />
-        <Route path="/home" component={SearchBar} />
+        <Route exact path="/home" component={Index} />
         <Route exact path="/form" component={VideogameForm} />
-        <Route exact path='/:id' component={Detail} />
-      </Switch>
+        <Route exact path='/detail/:id' component= {Detail} />
     </div>
   );
 }

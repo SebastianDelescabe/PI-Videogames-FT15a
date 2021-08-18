@@ -18,8 +18,8 @@ export default function RatingFilter() {
     return (
         <div>
             <select onChange={(e) => handleFilterRating(e)} >
-                <option value="best">Mejor rating</option>
-                <option value="worst">Peor rating</option>
+                <option value="best">Best Rating</option>
+                <option value="worst">Worst rating</option>
             </select>
             <select onChange={(e) => handleFilterRating(e)} >
                 <option value="asc">A-Z</option>
