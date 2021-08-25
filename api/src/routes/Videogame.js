@@ -12,7 +12,7 @@ async function apiInfo() { //TRAE INFO DE API
     try {
         for (let i = 1; i <= 5; i++) {
             promises.push(axios.get(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&page=${i}`)
-                .then(response => {
+                .then((response) => {
                     return response
                 }))
 
@@ -67,10 +67,10 @@ const bdInfo = async function () {  //TRAE INFO DE BD
                 }
             }
         ]
-
     })
     return dataBd
 }
+
 
 const allData = async function () {  //JUNTA LAS DOS INFO
     const apiData = await apiInfo()

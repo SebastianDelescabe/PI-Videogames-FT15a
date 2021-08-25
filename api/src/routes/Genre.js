@@ -4,20 +4,16 @@ const { Genre } = require('../db');
 const router = Router();
 
 
-router.get("/genre", async function (req, res) {  
-    const genre = await Genre.findAll()
+router.get("/genre", async function (req, res) {
+    // const genre = await Genre.findAll()
 
-    try{
-        if(genre){
-            res.status(200).send(genre)
-        }else{
+    Genre.findAll().then((response) => {
+        if (response) {
+            res.send(response)
+        } else {
             res.status(404)
         }
-        
-    }catch(error){
-        console.log(error)
-    }
-
+    })
 })
 
 module.exports = router;

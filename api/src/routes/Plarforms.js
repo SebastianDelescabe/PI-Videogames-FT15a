@@ -7,13 +7,14 @@ const router = Router();
 
 
 router.get("/platforms", async function (req, res) {  
-    const platforms = await Platforms.findAll()
     try{
-        if(platforms){
-            res.status(200).send(platforms)
-        }else{
-            res.status(404)
-        }
+        Platforms.findAll().then((response) => {
+            if(response){
+                res.send(response)
+            }else{
+                res.status(404).send("error")
+            }
+        })
 
     }catch(error){
         console.log(error)
