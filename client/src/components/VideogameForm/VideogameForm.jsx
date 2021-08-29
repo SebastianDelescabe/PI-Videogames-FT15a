@@ -279,7 +279,7 @@ export default function CharacterForm() {
                         <button
                             type="submit"
                             className={styleForm.button}
-                        >Add Videogame
+                        >ADD VIDEOGAME
                         </button>
                 }
             </form>

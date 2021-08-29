@@ -47,7 +47,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className={styleHome.loading}>
-        <h1>-</h1> 
+        <h1>{}</h1> 
       </div>
     )
   }

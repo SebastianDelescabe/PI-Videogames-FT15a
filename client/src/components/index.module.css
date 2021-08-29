@@ -19,3 +19,7 @@
     padding: 20px;
 
 }
+
+.buttonsSearch{
+    flex-direction: row;
+}

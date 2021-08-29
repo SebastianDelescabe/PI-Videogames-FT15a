@@ -7,7 +7,7 @@ export default function LandingPage() {
         <div className={styledLanding.background}>
             <div className= {styledLanding.flex}>
                 <Link to="/home">
-                    <button className = {styledLanding.btn}>GET IN</button>
+                    <button className = {styledLanding.btn}>START</button>
                 </Link>
             </div>
         </div>

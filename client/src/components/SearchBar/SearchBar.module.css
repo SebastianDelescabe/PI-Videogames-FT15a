@@ -1,6 +1,12 @@
-.div{
+.divErrors{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.divSearch{
+    margin-right: 25px;
+
 }
 .search {
     font-family:monospace;
@@ -16,7 +22,6 @@
     font-size: 12px;
     margin-left: 5px;
     margin-top: 30px;
-    margin-left: 179px;
 }
 
 .button{
@@ -31,6 +36,7 @@
     border: 1px solid transparent;
     font-family: fantasy;
     font-size: 20px;
+    margin-left: 2px;
 }
 .input::placeholder{
     font-size: 18px;

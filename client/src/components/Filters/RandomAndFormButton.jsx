@@ -6,7 +6,7 @@ export default function RandomAndFormButton() {
     return (
         <div>
             <div>
-                <img src="https://i.ibb.co/D7dp7b5/banner-2.png" alt="not found" width="1400px" height="" />
+                <img src="https://i.ibb.co/D7dp7b5/banner-2.png" alt="not found" width="1100px" height="" />
             </div>
             <div className={styleRandom.buttons}>
                 <Link to="/form">

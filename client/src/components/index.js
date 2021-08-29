@@ -14,6 +14,7 @@ export default function Index() {
         <div className={styleIndex.background}>
             <div>
                 <RandomAndFormButton/>
+                <SearchBar />
             </div>
             <div className={styleIndex.banner}>
                 <div className={styleIndex.filters}>
@@ -21,7 +22,6 @@ export default function Index() {
                     <GenreFilter />
                     <DbFilter />
                     <RatingOrder />
-                    <SearchBar />
                 </div >
             </div>
             <Home />
