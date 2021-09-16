@@ -10,7 +10,7 @@
 
 
 ## Objetivos
- [spoonacular API](https://spoonacular.com/food-api)
+ [rawg - API](https://rawg.io/apidocs)
 
   - Encontrar videojuegos
   - Filtrar / Ordenar
@@ -50,6 +50,5 @@ Node/Express
 #### Testing
 - [ ] Backend 
 - [ ] Model Data base
-- [ ] 
 ### Screenshots
 
