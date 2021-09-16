@@ -1,13 +1,8 @@
-<p align="right">
-  <img height="200" src="./videogame.png" />
-</p>
-
 # Proyecto Individual
 
 <p align="right">
-  <img height="200" src="./cooking.png" />
+  <img height="200" src="./videogame.png" />
 </p>
-
 
 ## Objetivos
  [rawg - API](https://rawg.io/apidocs)
