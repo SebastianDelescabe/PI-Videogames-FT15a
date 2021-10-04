@@ -33,7 +33,7 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
             <img src={img} alt="img not found" width="350" height="200" />
             <p className={cardCss.p}>{genres.map(e => e + " / ")}</p>
             <div className ={cardCss.div}>
-            <img src="https://lh3.googleusercontent.com/proxy/62uscdg2-9h9xqvmz5nd1zeJgHbYk6PBdX2XrtLhGSHHtAx2HgAM6LOVDCHVzcmzomvNX3SIHKM8HAtJ-7FtbpukY-EfQnqYiAogNe94IHvJ1kX826gf7AkCiQ1671XXv7-NVSl1yQI1zzQ" alt="not found"  width="20" height="20" />
+            <img src="https://i.ibb.co/6Zf7BHP/11.png" alt="not found"  width="35" height="20" />
             <p className={cardCss.pgame}>{rating}</p>
             </div>
         </div>
