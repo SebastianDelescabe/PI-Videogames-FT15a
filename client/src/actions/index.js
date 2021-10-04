@@ -69,7 +69,7 @@ export function getPlatforms() {
 export function deleteDbGame(id) {
     return async function (dispatch) {
         try {
-            const game = await axios.delete("/delete/" + id)
+            const game = await axios.delete("/delete" + id)
             return dispatch({
                 type: "DELETE_DB_GAME",
                 payload: game.data
