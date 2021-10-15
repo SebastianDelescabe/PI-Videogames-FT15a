@@ -5,7 +5,7 @@ const { Genre } = require('../db');
 const router = Router();
 
 
-router.get("/genre", async function (req, res) {
+router.get("/", async function (req, res) {
     Genre.findAll().then((response) => {
         if(response){
             res.send(response)

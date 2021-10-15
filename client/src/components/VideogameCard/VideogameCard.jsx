@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { deleteDbGame, getVideogames } from '../../actions'
 import cardCss from './VideogameCard.module.css'
 
@@ -11,6 +11,7 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
     function handleDelete(e) {
         e.preventDefault()
         dispatch(deleteDbGame(id))
+        console.log(id)
         dispatch(getVideogames())
             .then(() => {
                 alert("juego borrado")
@@ -19,8 +20,8 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
 
     return (
         <div className={cardCss.cnt}>
-            <div className = {cardCss.h1btn}> 
-                <Link to = {`/detail/${id}`} style={{ textDecoration: 'none' }} >
+            <div className={cardCss.h1btn}>
+                <Link to={`/detail/${id}`} style={{ textDecoration: 'none' }} >
                     <h1 className={cardCss.h1}>{name}</h1>
                 </Link>
                 {
@@ -32,9 +33,9 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
             </div>
             <img src={img} alt="img not found" width="350" height="200" />
             <p className={cardCss.p}>{genres.map(e => e + " / ")}</p>
-            <div className ={cardCss.div}>
-            <img src="https://i.ibb.co/6Zf7BHP/11.png" alt="not found"  width="35" height="20" />
-            <p className={cardCss.pgame}>{rating}</p>
+            <div className={cardCss.div}>
+                <img src="https://i.ibb.co/6Zf7BHP/11.png" alt="not found" width="35" height="20" />
+                <p className={cardCss.pgame}>{rating}</p>
             </div>
         </div>
     )

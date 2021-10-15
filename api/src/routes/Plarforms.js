@@ -4,7 +4,7 @@ const { Platforms } = require('../db');
 
 const router = Router();
 
-router.get("/platforms",function (req, res) {  
+router.get("/",function (req, res) {  
     Platforms.findAll().then((response) => {
         if(response){
             res.send(response)

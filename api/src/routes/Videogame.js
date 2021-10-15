@@ -4,11 +4,9 @@ const { Videogame, Genre, Platforms } = require('../db');
 
 const router = Router();
 
-
 async function apiInfo() { //TRAE INFO DE API
     let promises = []
     let allGames = []
-
     try {
         for (let i = 1; i <= 5; i++) {
             promises.push(axios.get(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&page=${i}`)
@@ -41,11 +39,9 @@ async function apiInfo() { //TRAE INFO DE API
                 }
             })
         return allGames
-
     } catch (error) {
         console.log(error)
     }
-
 }
 
 
@@ -79,9 +75,8 @@ const allData = async function () {  //JUNTA LAS DOS INFO
     return allData
 }
 
-router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE PASAN QUERY , SI LE PASAN QUERY LO BUSCA EN TODA LA INFO
+router.get("/", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE PASAN QUERY , SI LE PASAN QUERY LO BUSCA EN TODA LA INFO
     const { name } = req.query
-
     try {
         const allVideogames = await allData()
 
@@ -101,7 +96,7 @@ router.get("/games", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI N
 })
 
 
-router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
+router.get("/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const { id } = req.params
     const arrApiInfo = []
 
@@ -187,7 +182,7 @@ router.post("/games", async function (req, res) {   //POST GAMES
 })
 
 
-router.delete('/delete/:id', async function (req, res) {
+router.delete('/:id', async function (req, res) {
     const { id } = req.params;
 
     try {
