@@ -40,4 +40,3 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
         </div>
     )
 }
-
