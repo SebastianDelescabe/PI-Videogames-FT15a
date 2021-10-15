@@ -4,8 +4,8 @@ const { Genre } = require('../db');
 
 const router = Router();
 
-
 router.get("/", async function (req, res) {
+    // const genre = await Genre.findAll()
     Genre.findAll().then((response) => {
         if(response){
             res.send(response)

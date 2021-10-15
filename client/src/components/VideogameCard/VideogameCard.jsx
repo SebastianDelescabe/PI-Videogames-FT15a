@@ -11,7 +11,6 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
     function handleDelete(e) {
         e.preventDefault()
         dispatch(deleteDbGame(id))
-        console.log(id)
         dispatch(getVideogames())
             .then(() => {
                 alert("juego borrado")
