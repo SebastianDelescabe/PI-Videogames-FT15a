@@ -14,16 +14,6 @@ router.get("/",function (req, res) {
     })
 })
 
-
-router.get("/", async function (req, res) {  
-    try{
-        Platforms.findAll().then((response) => {
-            if(response){
-                res.send(response)
-            }else{
-                res.status(404).send("error")
-            }
-        })
 module.exports = router;
 
 //------------------------POR SI CRASHEA BASE DE DATOS-------------------------
