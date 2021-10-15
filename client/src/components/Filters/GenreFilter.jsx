@@ -15,7 +15,6 @@ export default function GenreFilter() {
 
     function handleGenreFilter(e) { 
         dispatch(filterGenre(e.target.value))
-        console.log(e.target.value)
     }
 
     return (

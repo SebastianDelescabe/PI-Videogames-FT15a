@@ -9,7 +9,6 @@ export default function DbFilter() {
     const [checkBd, setCheckBd] = useState(true)
 
     function handleCheck(e) {
-        console.log(e.target.value)
         if (checkBd === false) {
             dispatch(filterBd(e.target.value))
             setCheckBd(true)
