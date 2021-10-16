@@ -1,10 +1,12 @@
 .App {
   text-align: center;
 }
-/* body{
-  background-image: url("https://images.hdqwalls.com/download/connecting-the-dots-5k-tx-1920x1080.jpg");
-  background-size:contain
-} */
+body{
+  background-image: url("https://i.ibb.co/9t86QM7/16-32.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
 
 .App-logo {
   height: 40vmin;

@@ -1,7 +1,8 @@
 .divCard{
-    display:flex;
-    flex-wrap:wrap;
-    margin-left:40px;
+    display: grid;
+    grid-gap: 1rem 3.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(22rem,1fr));
+    margin-right: 15px;
 }
 
 

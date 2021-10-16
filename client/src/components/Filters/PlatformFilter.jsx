@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlatforms } from '../../actions'
 import { filterPlatforms } from '../../actions'
+import styleFilter from './Filters.module.css'
 
 export default function PlatformFilter() {
 
@@ -18,8 +19,8 @@ export default function PlatformFilter() {
     }
 
     return (
-        <div>
-            <select onChange={(e) => handlePlatformFilter(e)}>
+        <div className={styleFilter.caja}>
+            <select className={styleFilter.select} onChange={(e) => handlePlatformFilter(e)}>
                 <option value="all">All Platforms</option>
                 {
                     platforms && platforms.map(e => (

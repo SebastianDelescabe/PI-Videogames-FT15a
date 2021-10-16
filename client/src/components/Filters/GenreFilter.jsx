@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGenres } from '../../actions'
 import { filterGenre } from '../../actions'
+import styleFilter from './Filters.module.css'
 
 export default function GenreFilter() {
 
@@ -18,8 +19,8 @@ export default function GenreFilter() {
     }
 
     return (
-        <div>
-            <select onChange={(e) => handleGenreFilter(e)}>
+        <div className={styleFilter.caja}>
+            <select className={styleFilter.select} onChange={(e) => handleGenreFilter(e)}>
                 <option value="all">All Genre</option>
                 {
                     genres && genres.map(e => (

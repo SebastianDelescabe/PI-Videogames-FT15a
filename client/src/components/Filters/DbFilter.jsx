@@ -21,7 +21,7 @@ export default function DbFilter() {
     return (
         <div>
             <input className={styleFilter.input} onChange={(e) => handleCheck(e)} type="checkbox" value={checkBd} />
-            <label className={styleFilter.label}  >Games Created</label>
+            <label className={styleFilter.label}  >Created Games</label>
         </div>
     )
 
