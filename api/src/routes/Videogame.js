@@ -75,7 +75,7 @@ const allData = async function () {  //JUNTA LAS DOS INFO
     return allData
 }
 
-router.get("/", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE PASAN QUERY , SI LE PASAN QUERY LO BUSCA EN TODA LA INFO
+router.get("/games/", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE PASAN QUERY , SI LE PASAN QUERY LO BUSCA EN TODA LA INFO
     const { name } = req.query
     try {
         const allVideogames = await allData()
@@ -96,7 +96,7 @@ router.get("/", async function (req, res) { //MUESTRA TODOS LOS JUEGOS SI NO LE 
 })
 
 
-router.get("/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
+router.get("/games/:id", async function (req, res) {  //RUTA PARA BUSCAR POR ID
     const { id } = req.params
     const arrApiInfo = []
 
@@ -182,7 +182,7 @@ router.post("/games", async function (req, res) {   //POST GAMES
 })
 
 
-router.delete('/:id', async function (req, res) {
+router.delete('/delete/:id', async function (req, res) {
     const { id } = req.params;
 
     try {
