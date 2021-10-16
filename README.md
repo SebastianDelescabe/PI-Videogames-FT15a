@@ -3,6 +3,7 @@
 <p align="right">
   <img height="200" src="./videogame.png" />
 </p>
+[LIVE-DEMO](https://videogames-app-one.vercel.app/home)
 
 ## Objetivos
  [rawg - API](https://rawg.io/apidocs)
