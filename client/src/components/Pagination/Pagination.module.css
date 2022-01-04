@@ -8,8 +8,8 @@
   align-items: center;
   }
   .number{
-    color: white;
-    font-size: 20px;
+    color: #F8F8FF;
+    font-size: 25px;
     font-variant-numeric: tabular-nums;
     margin-bottom: 10px;
     float: left;
@@ -17,5 +17,5 @@
     cursor: pointer;
   }
   .number:hover{
-    background:deeppink
+    background:deeppink;
   }

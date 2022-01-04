@@ -145,7 +145,7 @@ export default function CharacterForm() {
             <h1 className={styleForm.h1}>CREATE GAME</h1>
             <form className={styleForm.form} onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                    <label className={styleForm.label}>Name:</label>
+                    <label className={styleForm.label}>Name</label>
                     <input
                         className={styleForm.inputs}
                         type="text"
@@ -161,7 +161,7 @@ export default function CharacterForm() {
                 </div>
 
                 <div>
-                    <label className={styleForm.label}>Rating:</label>
+                    <label className={styleForm.label}>Rating</label>
                     <input
                         className={styleForm.inputs}
                         type="number"
@@ -177,7 +177,7 @@ export default function CharacterForm() {
                 </div>
 
                 <div>
-                    <label className={styleForm.label}>Release Date:</label>
+                    <label className={styleForm.label}>Release Date</label>
                     <input
                         className={styleForm.inputs}
                         type="text"
@@ -204,7 +204,7 @@ export default function CharacterForm() {
                 </div>
 
                 <div>
-                    <label className={styleForm.label} >Description:</label>
+                    <label className={styleForm.label} >Description</label>
                     <textarea
                         type="text"
                         value={input.inputDescription}
@@ -220,8 +220,8 @@ export default function CharacterForm() {
                 </div>
 
                 <div className={styleForm.platforms} >
-                    <label className={styleForm.labelPlatforms} >Platforms:</label>
-                    <select onChange={(e) => handlePlatformsSelect(e)}>
+                    <label className={styleForm.labelPlatforms} >Platforms</label>
+                    <select  className = {styleForm.platGenreSelect} onChange={(e) => handlePlatformsSelect(e)}>
                         {
                             platforms.map((e) => (
                                 <option value={e.name}> {e.name} </option>
@@ -246,8 +246,8 @@ export default function CharacterForm() {
                 </div >
 
                 <div className={styleForm.genres}>
-                    <label className={styleForm.labelGenre} >Genres:</label>
-                    <select onChange={(e) => handleGenreSelect(e)}>
+                    <label className={styleForm.labelGenre} >Genres</label>
+                    <select className = {styleForm.platGenreSelect} onChange={(e) => handleGenreSelect(e)}>
                         {
                             genres.map((e) => (
                                 <option value={e.name}> {e.name} </option>

@@ -11,8 +11,7 @@
 .search {
     font-family:monospace;
     color: red;
-    font-size: 12px;
-    margin-top: 30px;
+
 }
 
 .error{
@@ -21,7 +20,6 @@
     color: red;
     font-size: 12px;
     margin-left: 5px;
-    margin-top: 30px;
 }
 
 .button{
@@ -30,13 +28,16 @@
     font-family: fantasy;
     font-size: 20px;
     cursor: pointer;
+    height: 46px;
 }
 
 .input{
     border: 1px solid transparent;
     font-family: fantasy;
     font-size: 20px;
-    margin-left: 2px;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 350px;
 }
 .input::placeholder{
     font-size: 18px;

@@ -4,6 +4,7 @@ const { Platforms } = require('../db');
 
 const router = Router();
 
+
 router.get("/",function (req, res) {  
     Platforms.findAll().then((response) => {
         if(response){
@@ -16,7 +17,7 @@ router.get("/",function (req, res) {
 
 module.exports = router;
 
-//------------------------POR SI CRASHEA BASE DE DATOS-------------------------
+// ------------------------POR SI CRASHEA BASE DE DATOS-------------------------
 // const apiInfo = async function () {
 //     let allGames = []
 //     let promises = []
@@ -49,21 +50,21 @@ module.exports = router;
 //         console.log(error)
 //     }
 // }
-//-----------------------------RUTA-----------------------
-//router.get("/platforms", async function (req, res) {  
-    // const plat = await apiInfo()
-    // const plat2 = plat.map(e => e.platforms).flat()
-    // const plat3 = plat2.map(e => e.name)
-    // const trim = plat3.map(e => e.trim())
-    // const noRepeatedTemp = [...new Set(trim)]
+// -----------------------------RUTA-----------------------
+// router.get("/", async function (req, res) {  
+//     const plat = await apiInfo()
+//     const plat2 = plat.map(e => e.platforms).flat()
+//     const plat3 = plat2.map(e => e.name)
+//     const trim = plat3.map(e => e.trim())
+//     const noRepeatedTemp = [...new Set(trim)]
 
-    // noRepeatedTemp.map((e) => {
-    //     Platforms.findOrCreate({
-    //         where:{
-    //             name:e
-    //         }
-    //     })
-    // })
-    // const hola =  await Platforms.findAll()
-    // res.send(hola) 
-//})
+//     noRepeatedTemp.map((e) => {
+//         Platforms.findOrCreate({
+//             where:{
+//                 name:e
+//             }
+//         })
+//     })
+//     const platform =  await Platforms.findAll()
+//     res.send(platform) 
+// })

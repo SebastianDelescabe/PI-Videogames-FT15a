@@ -30,16 +30,16 @@ export default function SearchBar() {
 
     return (
         <div>
-            <div className={styleSearchBar.divErrors}>
+            <p className={styleSearchBar.divErrors}>
                 {
                     error && (
-                        <p className={styleSearchBar.error}>Game not found</p>
+                        <div className={styleSearchBar.error}>Game not found</div>
                     )
                 }
                 {
-                    loading && loading ? <p className={styleSearchBar.search} >Searching...</p> : null
+                    loading && loading ? <div className={styleSearchBar.search} >Searching...</div> : null
                 }
-            </div>
+            </p>
             <div className = {styleSearchBar.divSearch}>
                 <button className={styleSearchBar.button} onClick={((e) => handleSubmit(e))} type="submit">Search</button>
                 <input className={styleSearchBar.input} onChange={((e) => handleInputChange(e))} placeholder="Name..." type="text" />
