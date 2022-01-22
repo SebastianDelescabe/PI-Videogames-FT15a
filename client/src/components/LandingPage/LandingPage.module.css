@@ -1,32 +1,49 @@
 .background{
-    height:705px;
+    height:929px;
     overflow-y: hidden ! important;
     overflow-x: hidden ! important;
     background-image: url('https://i.ibb.co/xGWfzbQ/game.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    overflow:auto
       } 
 .flex{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    margin-top: 180px;
-    margin-right: 200px;
-    /* transform: rotate(-24deg);    */
+    margin-left: 58%;
+    margin-top:150px ;
+}
+.span{
+    text-align: start;
+    font-size: 25px;
+    color: whitesmoke;
+    margin: 20px; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.h1{
+    text-align: start;
+    margin-left: 3%;
+    color: deeppink;
+    text-decoration: underline deeppink;
 }
 
 .btn{
-    margin-top: 20px;
-	background-color:rgb(107, 107, 197);
-	border-radius:2px;
-	border:1px solid rgb(107, 107, 197);
-    width: 250px;
-    font-size: 25px;
+    transform: rotate(-24deg);
+    margin-top: 10px;
+    margin-right: 600px;
+	background-color:transparent;
+    border-color: deeppink;
+    width: 350px;
+    font-size: 30px;
 	cursor:pointer;
-	color:#ffffff;
-	font-family:monospace;
-	padding:10px 30px;
-    letter-spacing: 1px;
+	color:deeppink;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	padding:5px;
+    letter-spacing: 2px;
+}
+
+.btn:hover{
+    background-color: deeppink;
+    color: whitesmoke;
 }

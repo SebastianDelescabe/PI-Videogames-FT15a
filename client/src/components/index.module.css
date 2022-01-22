@@ -8,13 +8,6 @@
     grid-template-columns: repeat(auto-fit, minmax(8rem,13rem));
 }
 
-.background{
-    background-image: url("https://i.ibb.co/9t86QM7/16-32.jpg");
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-}
-
 .banner{
     margin:20px 50px 20px 60px;
     background-color:rgb(46, 41, 80,0.8);
