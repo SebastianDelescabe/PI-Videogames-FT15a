@@ -28,6 +28,7 @@ export default function Home() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    console.log('recargee')
     dispatch(getVideogames())
       .then(response => {
         setLoading(false)

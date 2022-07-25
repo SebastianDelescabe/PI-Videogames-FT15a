@@ -10,12 +10,12 @@ export default function LandingPage() {
                 <span className={styledLanding.span}>Developer:  Sebastian Delescabe</span>
                 <span className={styledLanding.span}>Purpose:  Project in Bootcamp SoyHenry!!</span>
                 <span className={styledLanding.span}>Programming Language:  JavaScript</span>
-                <span className={styledLanding.span}>Techs:  React - Redux - NodeJs - CSS - PostgreSQL - Sequelize - Express </span>
+                <span className={styledLanding.span}>React - Redux - NodeJs - CSS - PostgreSQL - Sequelize - Express </span>
             </div>
             <div>
-            <Link to="/home">
-                <button className={styledLanding.btn}>START</button>
-            </Link>
+                <Link to="/home">
+                    <button className={styledLanding.btn}>START</button>
+                </Link>
             </div>
         </div>
     )

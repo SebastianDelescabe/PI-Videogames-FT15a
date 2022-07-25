@@ -173,7 +173,18 @@ router.post("/games", async function (req, res) {   //POST GAMES
         await newGame.addGenre(genreDb)
         await newGame.addPlatforms(platformDb)
 
-        return res.status(200).send("Peronsaje creado")
+        // Videogame.findByPk(1, { include: ['genres'] })
+        //     .then((videogame) => {
+        //         Get the Company with Users (employes) datas included
+        //         console.log(videogame)
+        //         Get the Users (employes) records only
+        //         console.log(company.get().employes)
+        //     })
+        //     .catch((err) => {
+        //         console.log("Error while find company : ", err)
+        //     })
+
+        return res.status(200).send("Videojuego creado")
 
     } else {
         return res.status(404).send("Completar formulario correctamente")

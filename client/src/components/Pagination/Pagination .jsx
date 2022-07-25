@@ -7,6 +7,7 @@ export default function Pagination({ videogamesPerPage, videogames, pagination }
         pageNumbers.push(i + 1)
     }
 
+    console.log(pageNumbers);
     return (
         <div>
             <div className={style.paginado}>
