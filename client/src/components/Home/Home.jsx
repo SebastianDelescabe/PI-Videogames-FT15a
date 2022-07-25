@@ -48,18 +48,13 @@ export default function Home() {
   if (loading) {
     return (
       <div className={styleHome.loading}>
-        <h1>{}</h1> 
+        <h1>{ }</h1>
       </div>
     )
   }
 
   return (
     <div>
-        <Pagination
-          videogamesPerPage={videogamesPerPage}
-          videogames={videogames.length}
-          pagination={pagination}
-        />
       <div className={styleHome.divCard} >
         {
           currentVideogames && currentVideogames.map(e => (
@@ -75,6 +70,11 @@ export default function Home() {
           ))
         }
       </div>
+      <Pagination
+        videogamesPerPage={videogamesPerPage}
+        videogames={videogames.length}
+        pagination={pagination}
+      />
     </div>
   )
 }

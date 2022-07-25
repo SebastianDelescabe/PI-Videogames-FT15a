@@ -30,7 +30,7 @@ export default function VideogameCard({ name, img, genres, rating, id, createdDb
                         : null
                 }
             </div>
-            <img src={img} alt="img not found" width="350" height="200" />
+            <img className={cardCss.img} src={img} alt="img not found" width="350" height="200" />
             <p className={cardCss.p}>{genres.map(e => e + " / ")}</p>
             <div className={cardCss.div}>
                 <img src="https://i.ibb.co/6Zf7BHP/11.png" alt="not found" width="35" height="20" />
